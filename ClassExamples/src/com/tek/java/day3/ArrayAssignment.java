@@ -113,13 +113,14 @@ public class ArrayAssignment {
 		System.out.println("How many favorite things do you have? ");
 		int things = scan.nextInt();
 		String[] stuff = new String[things];
+		Scanner scan2 = new Scanner(System.in);
 		for (int i = 0; i < things; i++) {
 			System.out.println("Enter your thing: ");
-			stuff[i]=scan.next();
+			stuff[i]=scan2.nextLine();
 		}
 		System.out.println("Your favorite things are: ");
 		for (String element: stuff) {
-			System.out.println(element);
+			System.out.print(element + " ");
 		}
 	}
 
