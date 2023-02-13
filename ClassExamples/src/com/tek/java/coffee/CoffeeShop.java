@@ -45,7 +45,7 @@ public class CoffeeShop {
 		System.out.println("---------\t-----\t-----------------");
 
 		for (MenuItem item : menuItems) {
-			
+
 			System.out.println(item.getName() + "\t" + formatPrice(item.getPrice()) + "\t" + item.getQuantityInStock());
 		}
 
@@ -99,30 +99,30 @@ public class CoffeeShop {
 		}
 		return null;
 	}
-	
+
 	public void viewCart() {
 		System.out.println(cart.size() + " items in your cart.\n");
-		
+
 		double totalPrice = 0.0;
-		
+
 		System.out.println("Item Name\tPrice");
 		System.out.println("---------\t-----");
-		for (MenuItem item: cart) {
-			
+		for (MenuItem item : cart) {
+
 			System.out.println(item.getName() + "\t" + formatPrice(item.getPrice()));
 			totalPrice = totalPrice + item.getPrice();
 		}
-		
+
 		System.out.println("---------\t-----");
-		
+
 		System.out.println("Total Price\t" + formatPrice(totalPrice));
 		System.out.println("");
 	}
-	
+
 	private String formatPrice(double price) {
 		DecimalFormat df = new DecimalFormat("$##.00");
 		String formattedPrice = df.format(price);
-		
+
 		return formattedPrice;
 	}
 

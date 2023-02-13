@@ -1,6 +1,6 @@
 package com.tek.java.day6.Day6Main;
 
-public class Square extends Shape implements AreaCalculation {
+public class Square extends Shape {
 	private int length;
 	private int height;
 
@@ -20,7 +20,8 @@ public class Square extends Shape implements AreaCalculation {
 	}
 
 	@Override
-	public String shapeName() {
-		return "Squre";
+	public String toString() {
+		return "The area of " + getShapeName() + " (length= " + length + ", height=" + height + ") is "
+				+ calculateArea();
 	}
 }

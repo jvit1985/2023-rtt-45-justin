@@ -9,7 +9,7 @@ public class ArrayPractice {
 		ArrayPractice ap = new ArrayPractice();
 		ap.maxRandomValue(1, 10, 10);
 	}
-	
+
 	public void maxRandomValue(int smallest, int largest, int length) {
 		int[] values = new int[length];
 
@@ -18,8 +18,8 @@ public class ArrayPractice {
 			Random rand = new Random();
 			int randomNum = rand.nextInt((largest - smallest) + 1) + smallest;
 
-			values[i]=randomNum;
-			
+			values[i] = randomNum;
+
 			System.out.println(randomNum);
 		}
 

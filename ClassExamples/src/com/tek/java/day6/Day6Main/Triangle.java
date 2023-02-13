@@ -1,6 +1,6 @@
 package com.tek.java.day6.Day6Main;
 
-public class Triangle extends Shape implements AreaCalculation {
+public class Triangle extends Shape {
 	private int base;
 	private int height;
 
@@ -14,12 +14,11 @@ public class Triangle extends Shape implements AreaCalculation {
 
 	@Override
 	public double calculateArea() {
-		int area = base * height / 3;
+		int area = base * height / 2;
 		return area;
 	}
 
-	@Override
-	public String shapeName() {
-		return "Triangle";
+	public String toString() {
+		return "The area of " + getShapeName() + " (base= " + base + ", height=" + height + ") is " + calculateArea();
 	}
 }
