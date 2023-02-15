@@ -1,4 +1,4 @@
-package com.tek.jav.day6.assignment1;
+package com.tek.java.day6.assignment1;
 
 public class Monster {
 	String name;

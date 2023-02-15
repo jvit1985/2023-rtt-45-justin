@@ -2,6 +2,7 @@ package com.tek.java.coffee;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,10 +34,23 @@ public class CoffeeShop {
 
 		menuItems.add(item2);
 
-		MenuItem item3 = new MenuItem("Small Cookie", 9.99, 5);
+		MenuItem item3 = new MenuItem("Small Cookie", 4.99, 5);
 		menuItems.add(item3);
 
 		menuItems.add(new MenuItem("Egg Sandwich", 14.30, 4));
+		
+		menuItems.sort(new Comparator<MenuItem>() {
+
+			@Override
+			public int compare(MenuItem o1, MenuItem o2) {
+				// TODO Auto-generated method stub
+				Double p1 = o1.getPrice();
+				Double p2 = o2.getPrice();
+				
+				return p1.compareTo(p2);
+			}
+		});
+			
 	}
 
 	public void printMenuItems() {
