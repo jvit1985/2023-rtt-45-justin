@@ -21,10 +21,7 @@ public class ArrayLibraryMain {
 			al.printArray(numbers, "After element insert");
 		} catch (NegativePositionException npe) {
 			System.out.println("NEGATIVE POSITION EXCEPTION " + npe.getMessage());
-		} catch (PositionTooLargeException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			System.out.println("This code will be executed in either case no matter what");
