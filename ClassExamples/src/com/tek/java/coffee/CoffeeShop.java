@@ -39,18 +39,21 @@ public class CoffeeShop {
 
 		menuItems.add(new MenuItem("Egg Sandwich", 14.30, 4));
 		
-		menuItems.sort(new Comparator<MenuItem>() {
-
-			@Override
-			public int compare(MenuItem o1, MenuItem o2) {
-				// TODO Auto-generated method stub
-				Double p1 = o1.getPrice();
-				Double p2 = o2.getPrice();
-				
-				return p1.compareTo(p2);
-			}
-		});
-			
+//		menuItems.sort(new Comparator<MenuItem>() {
+//
+//			@Override
+//			public int compare(MenuItem o1, MenuItem o2) {
+//				// TODO Auto-generated method stub
+//				Double p1 = o1.getPrice();
+//				Double p2 = o2.getPrice();
+//				
+//				return p1.compareTo(p2);
+//			}
+//		});
+		
+		//google "java stream sort object by field"
+		menuItems.sort(Comparator.comparing(MenuItem::getPrice));
+//			
 	}
 
 	public void printMenuItems() {
@@ -73,7 +76,7 @@ public class CoffeeShop {
 		System.out.println(ORDER_ITEM + ") Order Item");
 		System.out.println(VIEW_CART + ") View Cart");
 		System.out.println(EXIT + ") Exit Coffee Shop");
-		System.out.print("\nMake slection :");
+		System.out.print("\nMake selection : ");
 
 		int selection = scanner.nextInt();
 		scanner.nextLine();
