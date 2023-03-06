@@ -1,10 +1,17 @@
 package hibernate;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -46,13 +53,20 @@ public class Customer {
 	@Column(name="country")
 	private String country;
 	
-	@Column(name="salesRepEmployeeNumber")
+	@Column(name="salesRepEmployeeNumber", insertable=false, updatable=false)
 	private Integer salesRepEmployeeNumber;
 	
 	@Column(name="credit_limit", columnDefinition="decimal", precision=10, scale=2)
 	private Double creditLimit;
 	
-
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "salesRepEmployeeNumber", nullable = true)
+    private Employee employee;
+	
+//	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER,
+//            cascade = CascadeType.ALL)
+//    private List<Payment> payments;
+	
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", customerName=" + customerName + ", contactLastName=" + contactLastName
@@ -165,6 +179,23 @@ public class Customer {
 	public void setCreditLimit(Double creditLimit) {
 		this.creditLimit = creditLimit;
 	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	
+//	public List<Payment> getPayments() {
+//		return payments;
+//	}
+//
+//	public void setPayments(List<Payment> payments) {
+//		this.payments = payments;
+//	}
+
 	
 	
 	
