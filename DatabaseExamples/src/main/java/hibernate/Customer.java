@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -73,9 +76,16 @@ public class Customer {
     private Employee employee;
 	
 	@ToString.Exclude
-	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER,
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "customer",
             cascade = CascadeType.ALL)
     private List<Payment> payments = new ArrayList<Payment>();
+	
+	@ToString.Exclude
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "customer",
+            cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<Order>();
 	
 	
 }
