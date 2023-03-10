@@ -57,39 +57,51 @@ public class OneToManyExample {
 //		c.getOrders().add(order);
 //		customerDao.update(c);
 		
-		Customer c = customerDao.findById(103);
-		Product p = productDao.findById(2);
-		System.out.println(p);
-		System.out.println(c);
+//		Customer c = customerDao.findById(103);
+		//Product p = productDao.findById(2);
+		//System.out.println(p);
+//		System.out.println(c);
 		
-		Order order1 = orderDao.findById(10100);
-		p.setProductCode("Update Test");
-		p.setProductName("Name");
-		p.setBuyPrice(25.00);
-		p.setMsrp(45.00);
-		p.setProductScale("Big");
-		p.setProductVendor("Coke");
-		p.setQuantityInStock(200);
-		p.setProductDescription("The best product ever made");
-		
-		productDao.insert(p);
-		
-//		OrderDetail od = new OrderDetail();
-//		od.setOrderLineNumber(3);
-//		od.setPriceEach(24.99);
-//		od.setQuantityOrdered(5);
-//		od.setOrder(order1);
-//		od.setProduct(p);
+//		Order order1 = orderDao.findById(10100);
+//		Product product = new Product();
+//		product.setProductCode("Update Test");
+//		product.setProductName("Name");
+//		product.setBuyPrice(25.00);
+//		product.setMsrp(45.00);
+//		product.setProductScale("Big");
+//		product.setProductVendor("Coke");
+//		product.setQuantityInStock(200);
+//		product.setProductDescription("The best product ever made");
+//		product.setProductLineId(2);
+//		
+//		productDao.insert(product);
 		
 		
+		OrderDetail od = new OrderDetail();
+		Product prod = productDao.findById(113);
+		Order ord = orderDao.findById(10430);
+		od.setOrderLineNumber(3);
+		od.setPriceEach(24.99);
+		od.setQuantityOrdered(500);
+		od.setOrder(ord);
+		od.setProduct(prod);
+		od.setProductId(113);
+		od.setOrderId(10430);
+		orderDetailDao.insert(od);
 		
-//		for(OrderDetail od: order1.getOrderDetails()) {
-//			System.out.println(od);
-//		}
+		prod.getOrderDetails().add(od);
+		ord.getOrderDetails().add(od);
 		
-//		for (Order o : c.getOrders()) {
-//			System.out.println(o);
-//		}
+		productDao.update(prod);
+		orderDao.update(ord);
+		
+		for(OrderDetail ods: prod.getOrderDetails()) {
+			System.out.println(ods);
+		}
+		
+		for(OrderDetail ods: ord.getOrderDetails()) {
+			System.out.println(ods);
+		}
 		
 	}
 

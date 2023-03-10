@@ -43,7 +43,7 @@ public class Product {
 	@Column(name="product_name")
 	private String productName;
 	
-	@Column(name="productline_id", insertable=false, updatable=false)
+	@Column(name="productline_id")
 	private Integer ProductLineId;
 	
 	@Column(name="product_scale")
