@@ -17,7 +17,7 @@ public class StudentCourseDAO {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
-		String hql = "c.id, c.courseName, c.instructor FROM Course c, StudentCourse sc where sc.studentId = :idParam";
+		String hql = "FROM StudentCourse sc where sc.studentId = :idParam";
 		TypedQuery<StudentCourse> query = session.createQuery(hql,StudentCourse.class);
 		query.setParameter("idParam", studentId);
 		List<StudentCourse> results = query.getResultList();
@@ -36,7 +36,6 @@ public class StudentCourseDAO {
 		StudentCourse sc = new StudentCourse();
 		StudentDAO studentDao = new StudentDAO();
 		CourseDAO courseDao = new CourseDAO();
-		
 		sc.setStudent(student);
 		sc.setCourse(course);
 		
@@ -47,15 +46,7 @@ public class StudentCourseDAO {
 		
 		studentDao.update(student);
 		courseDao.update(course);
-	}
-
-	public void insert(StudentCourse studentCourse) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.getTransaction().begin();
-		session.save(studentCourse);
-		session.getTransaction().commit();
-		session.close();
+		
 	}
 
 	public void update(StudentCourse studentCourse) {
@@ -63,15 +54,6 @@ public class StudentCourseDAO {
 		Session session = factory.openSession();
 		session.getTransaction().begin();
 		session.merge(studentCourse);
-		session.getTransaction().commit();
-		session.close();
-	}
-	
-	public void delete(StudentCourse studentCourse) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.getTransaction().begin();
-		session.delete(studentCourse);
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -91,20 +73,13 @@ public class StudentCourseDAO {
 		return result;
 	}
 	
-	public void deleteById(Integer id) {
-		
+	public void insert(StudentCourse studentCourse) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
-		
-		String hql = "delete FROM StudentCourse sc where sc.id = :idParam";
-		Query query = session.createQuery(hql,StudentCourse.class);
-		query.setParameter("idParam", id);
-		query.executeUpdate();
 		session.getTransaction().begin();
-		query.executeUpdate();
+		session.save(studentCourse);
 		session.getTransaction().commit();
-
 		session.close();
-		
 	}
+	
 }

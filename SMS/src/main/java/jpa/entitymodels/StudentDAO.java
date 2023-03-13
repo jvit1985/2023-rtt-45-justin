@@ -12,27 +12,17 @@ import org.hibernate.cfg.Configuration;
 
 public class StudentDAO {
 
-	public Student validateStudent() {
-		Scanner scan = new Scanner(System.in);
-		StudentCourseDAO scDao = new StudentCourseDAO();
-		System.out.println("Enter your email address:");
-		String email = scan.next();
-		System.out.println("Enter your password:");
-		String password = scan.next();
+	public int validateStudent(String email, String password) {
 		
 		Student student1 = findByEmail(email);
 		if (student1 != null && student1.getPassword().equals(password)) {
 			int id = student1.getId();
-			List <StudentCourse> courses = scDao.getStudentCourses(id);
-			System.out.println("My Classes:");
-			for (StudentCourse course : courses) {
-				System.out.println(course);
-			}
-			return student1;
+			return id;
+			
 		} else {
 			System.out.println("Wrong credentials");
 		}
-		return null;
+		return -1;
 	}
 	
 	public List<Student> getAllStudents() {

@@ -25,29 +25,11 @@ public class CourseDAO {
 		return results;
 	}
 
-	public void insert(Course course) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.getTransaction().begin();
-		session.save(course);
-		session.getTransaction().commit();
-		session.close();
-	}
-
 	public void update(Course course) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.getTransaction().begin();
 		session.merge(course);
-		session.getTransaction().commit();
-		session.close();
-	}
-	
-	public void delete(Course course) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.getTransaction().begin();
-		session.delete(course);
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -67,20 +49,4 @@ public class CourseDAO {
 		return result;
 	}
 	
-	public void deleteById(Integer id) {
-		
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		
-		String hql = "delete FROM Course c where c.id = :idParam";
-		Query query = session.createQuery(hql,Course.class);
-		query.setParameter("idParam", id);
-		query.executeUpdate();
-		session.getTransaction().begin();
-		query.executeUpdate();
-		session.getTransaction().commit();
-
-		session.close();
-		
-	}
 }

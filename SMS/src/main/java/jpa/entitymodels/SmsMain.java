@@ -29,8 +29,18 @@ public class SmsMain {
 		//save selection of 1 or 2 from first prompt
 		switch(firstMenuPrompt()) {
 		case 1:
-			student = studentDao.validateStudent();
-			if(student != null) {
+			System.out.println("Enter your email address:");
+			String email = scan.next();
+			System.out.println("Enter your password:");
+			String password = scan.next();
+			if(studentDao.validateStudent(email, password) != -1) {
+				student = studentDao.findByEmail(email);
+				List <StudentCourse> courses = scDao.getStudentCourses(studentDao.validateStudent(email, password));
+				System.out.println("My Classes:");
+				System.out.printf("%5s%15S%15s\n", "ID", "Course", "Instructor");
+				for (StudentCourse course : courses) {
+					System.out.println(course);
+				}
 				registerMenu();
 			}
 			break;
@@ -67,14 +77,21 @@ public class SmsMain {
 			int number = scan.nextInt();
 			Course newCourse = courseDao.findById(number);
 			
-			if (newCourse == studentCourses) {
-				System.out.println("You are already registered in that course!");
-			} else if (newCourse != null) {
-				Student tempStudent = studentDao.findById(student.getId());
+			for(int i = 0; i < studentCourses.size(); i++) {
+				if(number == studentCourses.get(i).getCourseId()) {
+					System.out.println("You are already registered in that course!");
+					System.exit(0);
+				}
+			}
+			
+			 if (newCourse != null) {
+				StudentCourseDAO scDao1 = new StudentCourseDAO();
+				Student tempStudent = studentDao.findByEmail(student.getEmail());
 				scDao.registerStudentToCourse(tempStudent, newCourse);
-				List<StudentCourse> sCourses = scDao.getStudentCourses(tempStudent.getId());
+				List<StudentCourse> sCourses = scDao1.getStudentCourses(tempStudent.getId());
 				
 				System.out.println("My Classes:");
+				System.out.printf("%5s%15S%15s\n", "ID", "Course", "Instructor");
 				for (StudentCourse course: sCourses) {
 					System.out.println(course);
 				}
