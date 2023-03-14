@@ -15,8 +15,8 @@ public class StudentDAO {
 	public int validateStudent(String email, String password) {
 		
 		Student student1 = findByEmail(email);
-		if (student1 != null && student1.getPassword().equals(password)) {
-			int id = student1.getId();
+		if (student1 != null && student1.getSPassword().equals(password)) {
+			int id = student1.getSId();
 			return id;
 			
 		} else {
@@ -43,7 +43,7 @@ public class StudentDAO {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
-		String hql = "FROM Student s where s.email = :emailParam";
+		String hql = "FROM Student s where s.sEmail = :emailParam";
 		TypedQuery<Student> query = session.createQuery(hql,Student.class);
 		query.setParameter("emailParam", email);
 		Student result = query.getSingleResult();
@@ -85,7 +85,7 @@ public class StudentDAO {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
-		String hql = "FROM Student s where s.id = :idParam";
+		String hql = "FROM Student s where s.sId = :idParam";
 		TypedQuery<Student> query = session.createQuery(hql,Student.class);
 		query.setParameter("idParam", id);
 		Student result = query.getSingleResult();
@@ -100,7 +100,7 @@ public class StudentDAO {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
-		String hql = "delete FROM Student s where s.id = :idParam";
+		String hql = "delete FROM Student s where s.sId = :idParam";
 		Query query = session.createQuery(hql,Student.class);
 		query.setParameter("idParam", id);
 		query.executeUpdate();

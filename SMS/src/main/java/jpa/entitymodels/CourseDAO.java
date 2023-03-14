@@ -39,7 +39,7 @@ public class CourseDAO {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
-		String hql = "FROM Course c where c.id = :idParam";
+		String hql = "FROM Course c where c.cId = :idParam";
 		TypedQuery<Course> query = session.createQuery(hql,Course.class);
 		query.setParameter("idParam", id);
 		Course result = query.getSingleResult();

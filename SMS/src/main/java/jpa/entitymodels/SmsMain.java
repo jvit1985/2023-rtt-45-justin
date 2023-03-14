@@ -11,7 +11,7 @@ public class SmsMain {
 	Scanner scan = new Scanner(System.in);
 	private Student student;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		SmsMain sm = new SmsMain();
 		
 		sm.run();
@@ -27,6 +27,7 @@ public class SmsMain {
 	
 	private void run() {
 		//save selection of 1 or 2 from first prompt
+		try {
 		switch(firstMenuPrompt()) {
 		case 1:
 			System.out.println("Enter your email address:");
@@ -49,25 +50,36 @@ public class SmsMain {
 			System.exit(0);
 			break;
 		default:
+			System.out.println("Invalid input");
+			System.exit(0);
+		}
+		}
+		catch (Exception e) {
+			System.out.println("Invalid input");
+			e.printStackTrace();
 		}
 			
 	}
 		
 
 	private int firstMenuPrompt() {
+		
 		System.out.println("Are you a student?\n1. Student\n2. Quit\nPlease enter 1 or 2:");
 		int firstSelection = scan.nextInt();
 		return firstSelection;
+		
 	}
 	
 	private void registerMenu() {
+
+		try {
 		System.out.println("1.Register to Class\n2.Logout\nPlease enter your selection:");
 		int registerSelection = scan.nextInt();
 		
 		switch(registerSelection) {
 		case 1:
 			List<Course> allCourses = courseDao.getAllCourses();
-			List<StudentCourse> studentCourses = scDao.getStudentCourses(student.getId());
+			List<StudentCourse> studentCourses = scDao.getStudentCourses(student.getSId());
 			System.out.printf("%5s%15S%15s\n", "ID", "Course", "Instructor");
 			for (Course course : allCourses) {
 				System.out.println(course);
@@ -86,15 +98,17 @@ public class SmsMain {
 			
 			 if (newCourse != null) {
 				StudentCourseDAO scDao1 = new StudentCourseDAO();
-				Student tempStudent = studentDao.findByEmail(student.getEmail());
+				Student tempStudent = studentDao.findByEmail(student.getSEmail());
 				scDao.registerStudentToCourse(tempStudent, newCourse);
-				List<StudentCourse> sCourses = scDao1.getStudentCourses(tempStudent.getId());
+				List<StudentCourse> sCourses = scDao1.getStudentCourses(tempStudent.getSId());
 				
 				System.out.println("My Classes:");
 				System.out.printf("%5s%15S%15s\n", "ID", "Course", "Instructor");
 				for (StudentCourse course: sCourses) {
 					System.out.println(course);
 				}
+				System.out.println("You have been signed out.");
+				System.exit(0);
 			}
 			break;
 			
@@ -102,6 +116,11 @@ public class SmsMain {
 		default:
 			System.out.println("Goodbye!");
 			System.exit(0);
+		}
+		}
+		catch (Exception e) {
+			System.out.println("Invalid input");
+			e.printStackTrace();
 		}
 				
 	}

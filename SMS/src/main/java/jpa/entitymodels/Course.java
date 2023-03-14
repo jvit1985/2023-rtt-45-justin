@@ -31,13 +31,13 @@ public class Course {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name = "id")
-		private Integer id;
+		private Integer cId;
 
 		@Column(name = "course_name")
-		private String courseName;
+		private String cName;
 
 		@Column(name = "instructor")
-		private String instructor;
+		private String cInstructorName;
 
 		@ToString.Exclude
 		@OneToMany(mappedBy = "course", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

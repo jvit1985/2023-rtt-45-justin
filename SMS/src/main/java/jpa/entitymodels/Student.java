@@ -31,16 +31,16 @@ public class Student {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name = "id")
-		private Integer id;
+		private Integer sId;
 
 		@Column(name = "email")
-		private String email;
+		private String sEmail;
 
 		@Column(name = "student_name")
-		private String studentName;
+		private String sName;
 
 		@Column(name = "password")
-		private String password;
+		private String sPassword;
 
 		@ToString.Exclude
 		@OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
