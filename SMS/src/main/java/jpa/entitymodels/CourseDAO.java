@@ -15,7 +15,7 @@ public class CourseDAO {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
-		String hql = "FROM Course";
+		String hql = "FROM Course c";
 		TypedQuery<Course> query = session.createQuery(hql,Course.class);
 		
 		List<Course> results = query.getResultList();

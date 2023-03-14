@@ -38,10 +38,12 @@ public class SmsMain {
 				student = studentDao.findByEmail(email);
 				List <StudentCourse> courses = scDao.getStudentCourses(studentDao.validateStudent(email, password));
 				System.out.println("My Classes:");
+				System.out.println();
 				System.out.printf("%5s%15S%15s\n", "ID", "Course", "Instructor");
 				for (StudentCourse course : courses) {
 					System.out.println(course);
 				}
+				System.out.println();
 				registerMenu();
 			}
 			break;
@@ -64,7 +66,7 @@ public class SmsMain {
 
 	private int firstMenuPrompt() {
 		
-		System.out.println("Are you a student?\n1. Student\n2. Quit\nPlease enter 1 or 2:");
+		System.out.println("Are you a student?\n1. Student\n2. Quit\n\nPlease enter 1 or 2:");
 		int firstSelection = scan.nextInt();
 		return firstSelection;
 		
@@ -73,7 +75,7 @@ public class SmsMain {
 	private void registerMenu() {
 
 		try {
-		System.out.println("1.Register to Class\n2.Logout\nPlease enter your selection:");
+		System.out.println("1.Register to Class\n2.Logout\n\nPlease enter your selection:");
 		int registerSelection = scan.nextInt();
 		
 		switch(registerSelection) {
@@ -86,6 +88,7 @@ public class SmsMain {
 			}
 			System.out.println();
 			System.out.print("Enter Course Number: ");
+			System.out.println();
 			int number = scan.nextInt();
 			Course newCourse = courseDao.findById(number);
 			
@@ -103,10 +106,12 @@ public class SmsMain {
 				List<StudentCourse> sCourses = scDao1.getStudentCourses(tempStudent.getSId());
 				
 				System.out.println("My Classes:");
+				System.out.println();
 				System.out.printf("%5s%15S%15s\n", "ID", "Course", "Instructor");
 				for (StudentCourse course: sCourses) {
 					System.out.println(course);
 				}
+				System.out.println();
 				System.out.println("You have been signed out.");
 				System.exit(0);
 			}
