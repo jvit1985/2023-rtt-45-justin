@@ -113,8 +113,10 @@ public class SmsMain {
 			break;
 			
 		case 2:
-		default:
 			System.out.println("Goodbye!");
+			System.exit(0);
+		default:
+			System.out.println("Invalid input");
 			System.exit(0);
 		}
 		}
