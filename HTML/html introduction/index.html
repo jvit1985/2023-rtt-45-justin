@@ -5,40 +5,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="global.css"/>
 </head>
 <body>
-    <h1>This is our first page</h1>
-    <h2>This is our first page notice it change</h2>
-    <h3 style="color:red;">This is our first page notice it change</h3>
-    <h4>This is our first page notice it change</h4>
-    <h5>This is our first page notice it change</h5>
-    <p id="paragraph">This is a paragraph with some <strong>bold </strong>text with <a href="https://google.com" target="_new">a link in it</a></p>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="box-shadow: 2px 2px 5px 1px rgba(255,0,0,0.2);">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./signup.html">Signup</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./bootstrap.html">Bootstrap Example</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                Account
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">email@address.com</a></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
 
-    <img height="200px" src="https://www.nme.com/wp-content/uploads/2020/03/lastofus.jpg"/>
+<section class="pt-5 pb-5" style="background-color: bisque;">
+    <div class="container">
+        <h1 class="pb-2" style="text-align: center;">This is the page title</h1>
 
-    <br>
-    <ul>
-        <li> Item 1</li>
-        <li> Item 2</li>
-        <li> Item 3</li>
-    </ul>
-    <table border="1">
-        <tr>
-            <td>Column 1</td>
-            <td>Column 2</td>
-            <td>Column 3</td>
-        </tr>
-        <tr>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-        </tr>
-        <tr>
-            <td>Thing 1</td>
-            <td>Something</td>
-            <td>Larger Thing Here</td>
-        </tr>
-    </table>
+        <h2>This is our first page notice it change</h2>
+        <h3 style="color:red;">This is our first page notice it change</h3>
+        <h4>This is our first page notice it change</h4>
+        <h5>This is our first page notice it change</h5>
+        <p id="paragraph">This is a paragraph with some <strong>bold </strong>text with <a href="https://google.com" target="_new">a link in it</a></p>
+    
+        <img height="200px" src="https://www.nme.com/wp-content/uploads/2020/03/lastofus.jpg"/>
+    
+        <br>
+        <ul>
+            <li> Item 1</li>
+            <li> Item 2</li>
+            <li> Item 3</li>
+        </ul>
+        <table border="1">
+            <tr>
+                <td>Column 1</td>
+                <td>Column 2</td>
+                <td>Column 3</td>
+            </tr>
+            <tr>
+                <td>Data 1</td>
+                <td>Data 2</td>
+                <td>Data 3</td>
+            </tr>
+            <tr>
+                <td>Thing 1</td>
+                <td>Something</td>
+                <td>Larger Thing Here</td>
+            </tr>
+        </table>
+    </div>
+
+</section>
+<section class="pt-5 pb-5" style="background-color: aqua;">
+    <div class="container">
+        <h2 style="text-align: center;">This is the 2nd section of the page</h2>
+    </div>
+</section>
 
 </body>
 </html>

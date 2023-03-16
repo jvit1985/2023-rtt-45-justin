@@ -15,13 +15,6 @@ public class SmsMain {
 		SmsMain sm = new SmsMain();
 		
 		sm.run();
-		
-//		sm.getAllStudents();
-//		sm.getStudentByEmail(test@test.com);
-//		sm.validateStudent();
-//		sm.registerStudentToCourse();
-//		sm.getStudentCourses();
-//		sm.getAllCourses();
 
 	}
 	
