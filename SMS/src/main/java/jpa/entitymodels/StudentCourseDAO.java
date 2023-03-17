@@ -18,6 +18,7 @@ public class StudentCourseDAO {
 		Session session = factory.openSession();
 		
 		String hql = "FROM StudentCourse sc where sc.studentId = :idParam";
+//		"FROM Course c where c.cId IN (SELECT sc.courseId FROM StudentCourse sc where sc.studentId = :idParam"
 		TypedQuery<StudentCourse> query = session.createQuery(hql,StudentCourse.class);
 		query.setParameter("idParam", studentId);
 		List<StudentCourse> results = query.getResultList();
