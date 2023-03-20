@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        let width = prompt("Enter width:");
+        let height = prompt("Enter height");
+
+        let s="";
+
+        if (width/2 < height) {
+            console.log("Invalid Shape");
+        } else {
+
+        for (let i = 0; i < height; i++) {
+            for (let j = 0; j < width; j++) {
+                if (j < i) {
+                    s += " ";
+                } else  if ( j > (width - i - 1) ){
+                    s+=" ";
+                } else {
+                    s += "*";
+                }
+            }
+            s+="\n";
+        }
+        }
+
+        console.log(s);
+    </script>
+    
+</body>
+</html>
