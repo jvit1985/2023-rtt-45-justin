@@ -7,7 +7,7 @@ let allDraftedPlayers = [];
 
 let players = [
     {id: 0, name: "Jonathan Taylor", team: "Indianapolis Colts", position: "RB", bye: 14},
-    {id: 1, name: "Christian McCaffrey", team: "Carolina Panthers", position: "RB", bye: 13},
+    {id: 1, name: "Christian McCaffrey", team: "San Francisco 49ers", position: "RB", bye: 9},
     {id: 2, name: "Derrick Henry", team: "Tennessee Titans", position: "RB", bye: 6},
     {id: 3, name: "Dalvin Cook", team: "Minnesota Vikings", position: "RB", bye: 7},
     {id: 4, name: "Austin Ekeler", team: "Los Angeles Chargers", position: "RB", bye: 8},
