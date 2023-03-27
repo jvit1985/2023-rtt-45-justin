@@ -97,7 +97,31 @@
             let team12Input = document.querySelector("#team12name");
             let team12Value = team12Input.value;
 
+            let name = document.getElementById("team1name");
+        console.log(name);
+        console.log(name.value);
+
+        // lets make the name value required
+        if ( name.value == "" ) {
+            console.log("Name is required");
+            name.classList.add("is-invalid")
         }
+        
+        // create a new regular expression
+        const re = new RegExp("[a-zA-Z]+");
+
+        // the value that we want to match the regex against is - name.value
+        // this is the value of the input field
+        // the function match in javascript is going to do the regex match and we pass in the regex itself
+        // match returns boolean true or false if matched or not
+        const found = name.value.match(re);
+        if ( found ) {
+            console.log("the name matches the regex")
+        } else {
+            console.log("the name does not match the regex")
+        }
+
+      }
     </script>
     <section>
         <h1 class="text-center mt-3">Create Teams</h1>

@@ -54,7 +54,7 @@ public class Customer {
     @Column(name="country")
     private String country;
 
-    @Column(name="salesRepEmployeeNumber", insertable=false, updatable=false)
+    @Column(name="sales_rep_employee_id", insertable=false, updatable=false)
     private Integer salesRepEmployeeNumber;
 
     @Column(name="credit_limit", columnDefinition="decimal", precision=10, scale=2)
@@ -62,7 +62,7 @@ public class Customer {
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
-    @JoinColumn(name = "salesRepEmployeeNumber", nullable = true)
+    @JoinColumn(name = "sales_rep_employee_id", nullable = true)
     private Employee employee;
 
     @ToString.Exclude
