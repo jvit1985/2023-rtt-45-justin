@@ -13,30 +13,47 @@
 <link rel="stylesheet" href="./assets/style.css" />
 </head>
 <style>
-    .container {
-        border: none;
+    body {
+        background-image: url("assets/images/Logo\ NFL.png");
+        background-repeat: none;
+        background-color: rgb(121, 22, 22);
+        color: white;
+        
     }
+
+    form {
+        font-weight: bold;
+        opacity: .9;
+    }
+
+    
+    
+    /* .container {
+        border: none;
+        background-image: url("assets/images/Logo\ NFL.png");
+        background-repeat: none;
+    } */
 </style>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(198, 228, 151);">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(43,38,111)">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="draftboard.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="draftboard.html" style="color: white;">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="signup.html">Signup</a>
+                            <a class="nav-link" href="signup.html" style="color: white;">Signup</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="create-team.html">Create Teams</a>
+                            <a class="nav-link" href="create-team.html" style="color: white;">Create Teams</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="draftboard.html">Draftboard</a>
+                            <a class="nav-link" href="draftboard.html" style="color: white;">Draftboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="team1.html">My Team</a>
+                            <a class="nav-link" href="team1.html" style="color: white;">My Team</a>
                         </li>
                     </ul>
                 </div>
@@ -95,8 +112,9 @@
 
         var pass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,20}$/;
         if (!passwordValue.match(pass)) {
-          alert("Invalid password")
+            alert("Invalid password");
         }
+
       }
     </script>
     <section>
@@ -110,24 +128,24 @@
                 </div>
                 <div class="mb-3" style="width: 50%;">
                     <label for="firstName" class="form-label">First Name</label>
-                    <input type="name" class="form-control" id="firstName" aria-describedby="firstNameHelp">
+                    <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp">
                   </div>
                   <div class="mb-3" style="width: 50%;">
                     <label for="lastName" class="form-label">Last Name</label>
-                    <input type="name" class="form-control" id="lastName" aria-describedby="lastNameHelp">
+                    <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp">
                   </div>
                 <div class="mb-3" style="width: 50%;">
                   <label for="password" class="form-label" onchange="cancelClicked()">Password</label>
                   <input type="password" class="form-control" id="password" aria-describedby="PasswordHelp">
-                  <div id="passwordHelp" class="form-text">Password must be 8 characters long and contain 1 Uppercase, 1 lowercase, and 1 number</div>
+                  <div id="passwordHelp" class="form-text" style="font-weight: bolder; color: white;">Password must be 8 characters long and contain 1 Uppercase, 1 lowercase, and 1 number</div>
                 </div>
                 <div class="mb-3" style="width: 50%;">
                     <label for="confirmPassword" class="form-label" onchange="cancelClicked()">Confirm Password</label>
                     <input type="password" class="form-control" id="confirmPassword" aria-describedby="ConfirmPasswordHelp">
-                    <div id="confirmPasswordHelp" class="form-text">Please re-enter your password</div>
+                    <div id="confirmPasswordHelp" class="form-text" style="font-weight: bolder; color:white;">Please re-enter your password</div>
                   </div>
                     <div class="mb-3 dropdown">
-                        <h6 class="mt-3 mb-1">Draft Position</h6>
+                        <h6 class="mt-3 mb-1" style="font-weight: bold;">Draft Position</h6>
                         <select name="draftPosition" id="draftPosition">
                             <option value="option1">Team 1</option>
                             <option value="option2">Team 2</option>
@@ -143,7 +161,7 @@
                             <option value="option12">Team 12</option>
                         </select>
                     </div>
-                    <h6 class="mt-3 mb-1">Are you the League Manager?</h6>
+                    <h6 class="mt-3 mb-1" style="font-weight: bold;">Are you the League Manager?</h6>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                         <label class="form-check-label" for="flexRadioDefault1">
@@ -157,8 +175,8 @@
                         </label>
                       </div>
                       <div class="mt-3" style="width: 50%;">
-                        <label htmlFor="image">Upload Profile Picture(Optional)</label>
-                        <input type="file" id="image" name="image" accept="image/jpeg"/>
+                        <label htmlFor="image" style="font-weight: bold;">Upload Profile Picture(Optional)</label>
+                        <input type="file" id="image" name="image" accept="image/jpeg, image/png, image/svg"/>
                       </div>
                 <button type="submit" class="btn btn-primary mt-3" id="signup-submit" onclick="formSubmit()">Submit</button>
                 <button type="cancel" class="btn btn-secondary mt-3" onclick="cancelClicked()">Cancel</button>

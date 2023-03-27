@@ -13,8 +13,15 @@
 <link rel="stylesheet" href="./assets/style.css" />
 </head>
 <style>
+    section {
+        background-image: url("assets/images/The\ League.jpg");
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
     .container {
         border: none;
+        opacity: .8;
     }
 
     .mb-3 {
@@ -23,24 +30,24 @@
 </style>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(198, 228, 151);">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(43,38,111); ">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="draftboard.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="draftboard.html" style="color: white;">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="signup.html">Signup</a>
+                            <a class="nav-link" href="signup.html" style="color: white;">Signup</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="create-team.html">Create Teams</a>
+                            <a class="nav-link" href="create-team.html" style="color: white;">Create Teams</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="draftboard.html">Draftboard</a>
+                            <a class="nav-link" href="draftboard.html" style="color: white;">Draftboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="team1.html">My Team</a>
+                            <a class="nav-link" href="team1.html" style="color: white;">My Team</a>
                         </li>
                     </ul>
                 </div>
@@ -48,6 +55,7 @@
         </nav>
     </header>
     <script>
+
         function checkNames() {
             //need to check all team names for text and highlight in red if no text in box
         }
