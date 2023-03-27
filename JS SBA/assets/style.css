@@ -2,7 +2,6 @@ body {
     font-family: Montserrat;
     background-repeat: none;
         background-color: rgb(121, 22, 22);
-        color: white;
 }
 
 a {
@@ -15,9 +14,6 @@ a {
     color: white
 }
 
-option {
-    color: black;
-}
 
 h3 {
     padding-right: 10px;
@@ -47,6 +43,7 @@ td {
 
 h2 {
     padding-bottom: 10px;
+    color: white;
 }
 
 #teams {
@@ -65,4 +62,12 @@ h2 {
     text-align: center;
     font-size: smaller;
     flex-wrap: wrap;
+}
+
+h1 {
+    color: white;
+}
+
+h3 {
+    color: white;
 }
