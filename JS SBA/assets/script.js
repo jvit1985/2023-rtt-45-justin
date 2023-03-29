@@ -510,3 +510,48 @@ draftBtn.addEventListener("click", getPlayer);
 $(document).ready(function() {
     $('.dropdown').select2();
 });
+
+$(document).ready(function() {
+    var jsonObject = JSON.stringify(players);
+
+    $('#json').text(jsonObject);
+
+    $('#csv').text(exportJSONToCSV(jsonObject));
+});
+
+// function ConvertToCSV(objArray) {
+//     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+//     var str = '';
+
+//     for (var i = 0; i < array.length; i++) {
+//         var line = '';
+//         for (var index in array[i]) {
+//             if (line != '') line += ','
+
+//             line += array[i][index];
+//         }
+
+//         str += line + '\r\n';
+//     }
+//     return str;
+// }
+
+function exportJSONToCSV(objArray) {
+    var arr = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
+    var str =
+      `${Object.keys(arr[0])
+        .map((value) => `"${value}"`)
+        .join(',')}` + '\r\n';
+    var csvContent = arr.reduce((st, next) => {
+      st +=
+        `${Object.values(next)
+          .map((value) => `"${value}"`)
+          .join(',')}` + '\r\n';
+      return st;
+    }, str);
+    var element = document.createElement('a');
+    element.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+    element.target = '_blank';
+    element.download = 'export.csv';
+    element.click();
+  }
