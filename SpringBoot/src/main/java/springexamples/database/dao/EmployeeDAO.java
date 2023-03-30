@@ -11,6 +11,8 @@ public interface EmployeeDAO extends JpaRepository<Employee, Long> {
     @Query("FROM Employee e")
     List<Employee> getAllEmployees();
 
+    Employee findById(Integer id);
+
     List<Employee> findByFirstNameContainingOrLastNameContainingIgnoreCase(String firstName, String lastName);
 
     List<Employee> findByFirstNameContainingIgnoreCase(String firstName);

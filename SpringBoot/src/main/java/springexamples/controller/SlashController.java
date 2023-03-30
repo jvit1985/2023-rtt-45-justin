@@ -10,6 +10,7 @@ import springexamples.database.dao.EmployeeDAO;
 
 @Slf4j
 @Controller
+@RequestMapping(value = {"/index" ,"/", "/index.html"}, method = RequestMethod.GET)
 public class SlashController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)

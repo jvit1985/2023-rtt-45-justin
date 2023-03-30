@@ -16,8 +16,8 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control" name="firstSearch" placeholder="Employee First Name"
               aria-label="Employee First Name" aria-describedby="firstSearch" value="${firstSearchParam}">
-              <input type="text" class="form-control" name="lastSearch" placeholder="Employee First Name"
-              aria-label="Employee First Name" aria-describedby="lastSearch" value="${lastSearchParam}">
+              <input type="text" class="form-control" name="lastSearch" placeholder="Employee Last Name"
+              aria-label="Employee Last Name" aria-describedby="lastSearch" value="${lastSearchParam}">
               <button class="btn btn-outline-secondary" id="search">Search</button>
             </div>
         </form>
@@ -34,6 +34,7 @@
         <table class="table table-striped border">
             <thead>
             <tr>
+                <th scope="col">Employee Id</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
@@ -43,7 +44,7 @@
             <tbody>
             <c:forEach items="${employeesList}" var="emp">
                 <tr>
-
+                    <td><a href="/employee/detail/${emp.id}">${emp.id}</a></td>
                     <td>${emp.firstName}</td>
                     <td>${emp.lastName}</td>
                     <td>${emp.email}</td>
