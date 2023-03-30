@@ -20,16 +20,16 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./index">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link active" aria-current="page" href="/index">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./signup">Signup</a>
+              <a class="nav-link" href="/signup">Signup</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./bootstrap">Bootstrap Example</a>
+              <a class="nav-link" href="/bootstrap">Bootstrap Example</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./employee-search">Employee Search</a>
+              <a class="nav-link" href="/employee/employee-search">Employee Search</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
