@@ -29,24 +29,50 @@ public class EmployeeController {
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable Integer id) {
         ModelAndView response = new ModelAndView("employee/detail");
-        log.info("In employee detail controller method with id = " + id);
+        log.debug("In employee detail controller method with id = " + id);
         Employee employee = employeeDAO.findById(id);
 
         response.addObject("employee", employee);
 
-        log.info(employee + "");
+        log.debug(employee + "");
         return response;
     }
 
     @GetMapping("/create")
     public ModelAndView create() {
         ModelAndView response = new ModelAndView("employee/create");
-        log.info("In employee create controller method");
+        log.debug("In employee create controller method");
 
         List<Office> offices = officeDAO.getAllOffices();
         response.addObject("offices", offices);
 
         return response;
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView edit(@PathVariable Integer id) {
+        ModelAndView response = new ModelAndView("employee/create");
+        log.debug("Im employee controller - edit employee");
+
+        Employee emp = employeeDAO.findById(id);
+        EmployeeFormBean form = new EmployeeFormBean();
+
+        form.setId(emp.getId());
+        form.setEmail(emp.getEmail());
+        form.setFirstName(emp.getFirstName());
+        form.setLastName(emp.getLastName());
+        form.setExtension(emp.getExtension());
+        form.setJobTitle(emp.getJobTitle());
+        form.setVacationHours(emp.getVacationHours());
+        form.setOfficeId(emp.getOfficeId());
+
+        response.addObject("form", form);
+
+        List<Office> offices = officeDAO.getAllOffices();
+        response.addObject("offices", offices);
+
+        return response;
+
     }
 
     @GetMapping("/createSubmit")
@@ -56,10 +82,15 @@ public class EmployeeController {
         List<Office> offices = officeDAO.getAllOffices();
         response.addObject("offices", offices);
 
-        log.info("In employee createSubmit controller method");
-        log.info(form.toString());
+        log.debug("In employee createSubmit controller method");
+        log.debug(form.toString());
 
         Employee emp = new Employee();
+
+        if (form.getId() != null && form.getId() > 0) {
+            emp = employeeDAO.findById(form.getId());
+        }
+
         emp.setEmail(form.getEmail());
         emp.setFirstName(form.getFirstName());
         emp.setLastName(form.getLastName());
@@ -69,6 +100,7 @@ public class EmployeeController {
         emp.setOfficeId(form.getOfficeId());
 
         employeeDAO.save(emp);
+        response.addObject("form", form);
 
         return response;
     }
@@ -76,7 +108,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView employeeSearch(@RequestParam(required = false) String firstSearch, @RequestParam(required = false) String lastSearch) {
-        log.info("In the employee search controller method with firstName = " + firstSearch +" lastName = "+ lastSearch);
+        log.debug("In the employee search controller method with firstName = " + firstSearch +" lastName = "+ lastSearch);
         ModelAndView response = new ModelAndView("employee/search");
 
         List<Employee> employees = new ArrayList<>();

@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
+@RequestMapping(value = {"/index" , "/", "index.html"}, method = RequestMethod.GET)
 public class SlashController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
