@@ -57,12 +57,30 @@
                     aria-describedby="jobTitleHelp" value="${form.jobTitle}">
                   </div>
                 <div class="mb-4">
+                    <label for="profileImage" class="form-label">Profile Image</label>
+                    <input type="text" class="form-control" id="profileImage" name="profileImage"
+                     aria-describedby="profileImageHelp" value="${form.profileImage}">
+                </div>
+                <div class="mb-4">
                     <label for="vacationHours" class="form-label">Vacation Hours</label>
                     <input type="number" class="form-control" id="vacationHours" name="vacationHours"
                     aria-describedby="vacationHoursHelp" value="${form.vacationHours}">
                 </div>
+                <div class="mb-4">
+                <c:if test="${not empty form.id}">
+                     <label for="employeeDetail" class="form-label">Employee Detail</label>
+                     <a href="/employee/detail/${form.id}">Detail</a>
 
-                <button type="submit" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Create Account</button>
+                    </c:if>
+                </div>
+                <c:if test="${empty form.id}">
+                     <button type="submit" id="create_btn" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Create Account</button>
+                </c:if>
+                <c:if test="${not empty form.id}">
+                     <button type="submit" id="edit_btn" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Edit Account</button>
+
+                </c:if>
+
             </form>
         </div>
     </section>

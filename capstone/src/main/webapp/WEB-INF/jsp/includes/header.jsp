@@ -19,19 +19,19 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="./signup" style="color: white;">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/signup" style="color: white;">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./signup" style="color: white;">Signup</a>
+                            <a class="nav-link" href="/signup" style="color: white;">Signup</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./create-team" style="color: white;">Create Teams</a>
+                            <a class="nav-link" href="/create-team" style="color: white;">Create Teams</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./draftboard" style="color: white;">Draftboard</a>
+                            <a class="nav-link" href="/draftboard" style="color: white;">Draftboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./team1" style="color: white;">My Team</a>
+                            <a class="nav-link" href="/team/detail/1" style="color: white;">My Team</a>
                         </li>
                     </ul>
                 </div>

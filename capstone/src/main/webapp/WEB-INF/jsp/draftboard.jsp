@@ -28,8 +28,8 @@
             <thead>
                 <tr>
                 <th scope="col">Round #</th>
-                <c:forEach items="{teams}" var="team">
-                <th scope="col"><a href="/team/detail/${team.id}">Team ${team.id}</a></th>
+                <c:forEach items="${teams}" var="team">
+                <th scope="col"><a href="/team/detail/${team.id}">${team.teamName}</a></th>
                 </tr>
                 </c:forEach>
             </thead>

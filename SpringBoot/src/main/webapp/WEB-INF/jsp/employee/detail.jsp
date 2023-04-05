@@ -48,6 +48,14 @@
                       <th scope="row">Extension</th>
                       <td>${employee.extension}</td>
                 </tr>
+                <tr>
+                      <th scope="row">Profile Image</th>
+                      <td><img src="${employee.profileImage}"></td>
+                </tr>
+                <tr>
+                      <th scope="row">Edit</th>
+                      <td><a href="/employee/edit/${employee.id}">Edit</a></td>
+                </tr>
         </table>
     </div>
 </section>

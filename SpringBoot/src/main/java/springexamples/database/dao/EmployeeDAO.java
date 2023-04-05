@@ -5,6 +5,7 @@ import springexamples.database.entity.Employee;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Map;
 
 public interface EmployeeDAO extends JpaRepository<Employee, Long> {
 
@@ -18,6 +19,9 @@ public interface EmployeeDAO extends JpaRepository<Employee, Long> {
     List<Employee> findByFirstNameContainingIgnoreCase(String firstName);
 
     List<Employee> findByLastNameContainingIgnoreCase(String lastName);
+
+    @Query(value = "select e.*, o.city from employees e, offices o where e.office_id = o.id;", nativeQuery = true)
+    List<Map<String,Object>> findAllWithOfficeName();
 
 //    List<Employee> findByLastNameContainingIgnoreCase(String lastName);
 

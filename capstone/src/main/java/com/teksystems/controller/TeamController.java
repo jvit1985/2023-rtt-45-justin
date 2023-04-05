@@ -1,5 +1,6 @@
 package com.teksystems.controller;
 
+import com.teksystems.database.dao.PlayerDAO;
 import com.teksystems.database.dao.TeamDAO;
 import com.teksystems.database.dao.TeamPlayerDAO;
 import com.teksystems.database.dao.UserDAO;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -30,13 +32,17 @@ public class TeamController {
     @Autowired
     private TeamPlayerDAO teamPlayerDAO;
 
+    @Autowired
+    private PlayerDAO playerDAO;
+
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable Integer id) {
         ModelAndView response = new ModelAndView("team/detail");
         log.debug("In team detail controller method with id = " + id);
-//        Team team = teamDAO.findById(id);
-        List<Player> players = teamPlayerDAO.findAllPlayersByTeamId(1);
+        Team team = teamDAO.findById(id);
+        List<Map<String, Object>> players = teamPlayerDAO.findAllPlayersByTeamId(team.getId());
 
+        response.addObject("team", team);
         response.addObject("players", players);
 
         log.debug(players + "");

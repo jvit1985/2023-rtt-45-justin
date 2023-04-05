@@ -16,9 +16,9 @@
     </style>
 
 <main>
-        <h1 class="text-center mt-3">{team.teamName}</h1>
+        <h1 class="text-center mt-3">${team.teamName}</h1>
         <div class="profile-picture text-center">
-            <img src="pub/images/profileImage.png" alt="Team1" Profile Picture" style="height: 20%; width: 20%;">
+            <img src="${team.teamPicture}" alt="Team1 Profile Picture" style="height: 20%; width: 20%;">
         </div>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">
@@ -33,10 +33,10 @@
             <tbody>
               <c:forEach items="${players}" var="player">
                 <tr>
-                    <td>{player.position}</td>
-                    <td>{player.name}</td>
-                    <td>{player.team}</td>
-                    <td>{player.bye}</td>
+                    <td>${player.position}</td>
+                    <td>${player.name}</td>
+                    <td>${player.team}</td>
+                    <td>${player.bye}</td>
                 </tr>
               </c:forEach>
             </tbody>

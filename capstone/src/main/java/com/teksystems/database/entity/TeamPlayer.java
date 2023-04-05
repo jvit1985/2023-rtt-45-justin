@@ -17,12 +17,22 @@ public class TeamPlayer {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "team_id")
+    @Column(name = "team_id", insertable = false, updatable = false)
     private Integer teamId;
 
-    @Column(name = "player_id")
+    @Column(name = "player_id", insertable = false, updatable = false)
     private Integer playerId;
 
     @Column(name = "draft_pick_number")
     private Integer draftPickNumber;
+
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "team_id", nullable = false)
+    private Team team;
+
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "player_id", nullable = false)
+    private Player player;
 }

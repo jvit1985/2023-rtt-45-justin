@@ -118,20 +118,11 @@ body {
                             <option value="12">Team 12</option>
                         </select>
                     </div>
-                    <h6 class="mt-3 mb-1" style="font-weight: bold;">Are you the League Manager?</h6>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Yes
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          No
-                        </label>
-                      </div>
-                      <div class="mt-3" style="width: 50%;">
+                    <div class="mb-3" style="width: 50%;">
+                         <label for="teamName" class="form-label">Team Name</label>
+                         <input type="text" class="form-control" name="teamName" id="teamName" aria-describedby="teamNameHelp">
+                    </div>
+                      <div class="mb-3" style="width: 50%;">
                         <label htmlFor="image" style="font-weight: bold;">Upload Profile Picture(Optional)</label>
                         <input type="file" id="image" name="teamPicture" accept="image/jpeg, image/png, image/svg"/>
                       </div>

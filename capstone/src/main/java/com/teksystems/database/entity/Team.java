@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,4 +29,11 @@ public class Team {
 
     @Column(name = "team_picture")
     private String teamPicture;
+
+    @ToString.Exclude
+//    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<TeamPlayer> teamPlayers;
+
 }

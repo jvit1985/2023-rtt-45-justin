@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TeamPlayerDAO extends JpaRepository<TeamPlayer, Long> {
 
@@ -14,8 +15,8 @@ public interface TeamPlayerDAO extends JpaRepository<TeamPlayer, Long> {
 
     TeamPlayer findById(Integer id);
 
-    @Query(value = "select p.name, p.team, p.position, p.bye from players p, team_players tp, teams t WHERE p.id = tp.player_id AND :id = tp.team_id ;", nativeQuery = true)
-    List<Player> findAllPlayersByTeamId(Integer id);
+    @Query(value = "select p.* from players p, team_players tp WHERE p.id = tp.player_id AND tp.team_id = :id ;", nativeQuery = true)
+    List<Map<String,Object>> findAllPlayersByTeamId(Integer id);
 
     TeamPlayer findByPlayerId(Integer playerId);
 }
