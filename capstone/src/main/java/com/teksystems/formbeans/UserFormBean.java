@@ -7,13 +7,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class TeamFormBean {
+public class UserFormBean {
 
     private Integer id;
 
-    private String teamName;
+    private String email;
 
-    private String teamPicture;
+    private String password;
 
-    private Integer userId;
+    private String firstName;
+
+    private String lastName;
 }

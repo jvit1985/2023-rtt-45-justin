@@ -1,4 +1,6 @@
-<jsp:include page="includes/header.jsp" />
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<jsp:include page="../includes/header.jsp" />
 
 <style>
         table {
@@ -14,9 +16,9 @@
     </style>
 
 <main>
-        <h1 class="text-center mt-3">Team ${team.id}</h1>
+        <h1 class="text-center mt-3">{team.teamName}</h1>
         <div class="profile-picture text-center">
-            <img src="pub/images/profileImage.png" alt="Team1 Profile Picture" style="height: 20%; width: 20%;">
+            <img src="pub/images/profileImage.png" alt="Team1" Profile Picture" style="height: 20%; width: 20%;">
         </div>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">
@@ -29,12 +31,12 @@
                 </tr>
             </thead>
             <tbody>
-              <c:forEach items="${teamPlayersList}" var="teamPlayers">
+              <c:forEach items="${players}" var="player">
                 <tr>
-                    <td>{teamPlayers.position}</td>
-                    <td>{teamPlayers.name}</td>
-                    <td>{teamPlayers.team}</td>
-                    <td>{teamPlayers.bye}</td>
+                    <td>{player.position}</td>
+                    <td>{player.name}</td>
+                    <td>{player.team}</td>
+                    <td>{player.bye}</td>
                 </tr>
               </c:forEach>
             </tbody>
@@ -46,4 +48,4 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="./assets/script.js"></script>
 
-<jsp:include page="includes/footer.jsp" />
+<jsp:include page="../includes/footer.jsp" />

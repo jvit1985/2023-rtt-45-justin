@@ -81,7 +81,7 @@ body {
             <form>
                 <div class="mb-3" style="width: 50%;">
                   <label for="exampleInputEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" name="exampleInputEmail" id="exampleInputEmail" aria-describedby="emailHelp">
+                  <input type="email" class="form-control" name="email" id="exampleInputEmail" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3" style="width: 50%;">
                     <label for="firstName" class="form-label">First Name</label>
@@ -93,7 +93,7 @@ body {
                   </div>
                 <div class="mb-3" style="width: 50%;">
                   <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password" aria-describedby="PasswordHelp">
+                  <input type="password" class="form-control" name="password" id="password" aria-describedby="PasswordHelp">
                   <div id="passwordHelp" class="form-text" style="font-weight: bolder; color: white;">Password must be 8 characters long and contain 1 Uppercase, 1 lowercase, and 1 number</div>
                 </div>
                 <div class="mb-3" style="width: 50%;">
@@ -103,19 +103,19 @@ body {
                   </div>
                     <div class="mb-3 dropdown">
                         <h6 class="mt-3 mb-1" style="font-weight: bold;">Draft Position</h6>
-                        <select name="draftPosition" id="draftPosition">
-                            <option value="option1">Team 1</option>
-                            <option value="option2">Team 2</option>
-                            <option value="option3">Team 3</option>
-                            <option value="option4">Team 4</option>
-                            <option value="option5">Team 5</option>
-                            <option value="option6">Team 6</option>
-                            <option value="option7">Team 7</option>
-                            <option value="option8">Team 8</option>
-                            <option value="option9">Team 9</option>
-                            <option value="option10">Team 10</option>
-                            <option value="option11">Team 11</option>
-                            <option value="option12">Team 12</option>
+                        <select name="teamNumber" id="draftPosition">
+                            <option value="1">Team 1</option>
+                            <option value="2">Team 2</option>
+                            <option value="3">Team 3</option>
+                            <option value="4">Team 4</option>
+                            <option value="5">Team 5</option>
+                            <option value="6">Team 6</option>
+                            <option value="7">Team 7</option>
+                            <option value="8">Team 8</option>
+                            <option value="9">Team 9</option>
+                            <option value="10">Team 10</option>
+                            <option value="11">Team 11</option>
+                            <option value="12">Team 12</option>
                         </select>
                     </div>
                     <h6 class="mt-3 mb-1" style="font-weight: bold;">Are you the League Manager?</h6>
@@ -133,10 +133,10 @@ body {
                       </div>
                       <div class="mt-3" style="width: 50%;">
                         <label htmlFor="image" style="font-weight: bold;">Upload Profile Picture(Optional)</label>
-                        <input type="file" id="image" name="image" accept="image/jpeg, image/png, image/svg"/>
+                        <input type="file" id="image" name="teamPicture" accept="image/jpeg, image/png, image/svg"/>
                       </div>
                 <button type="submit" class="btn btn-primary mt-3" id="signup-submit" onclick="formSubmit()">Submit</button>
-                <button type="cancel" class="btn btn-secondary mt-3" onclick="cancelClicked()">Cancel</button>
+
               </form>
         </div>
     </section>

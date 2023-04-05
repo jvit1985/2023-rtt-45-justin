@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "players")
+@Table(name = "teams")
 public class Team {
 
     @Id

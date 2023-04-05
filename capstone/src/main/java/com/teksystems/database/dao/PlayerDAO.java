@@ -1,4 +1,16 @@
 package com.teksystems.database.dao;
 
-public class PlayerDAO {
+import com.teksystems.database.entity.Player;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+
+public interface PlayerDAO extends JpaRepository<Player, Long> {
+
+
+    @Query("FROM Player")
+    List<Player> getAllPlayers();
+
+    Player findById(Integer id);
 }

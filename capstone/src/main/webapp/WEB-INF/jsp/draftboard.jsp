@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <jsp:include page="includes/header.jsp" />
 
 <style>
@@ -13,7 +15,11 @@
         <h1 class="text-center mt-3">Draftboard</h1>
         <div class="mb-3 d-flex align-items-center justify-content-center" id="selection">
             <h3>Select Your Player</h3>
-            <select class="dropdown" id="dropdown" style="color: black;"></select>
+            <select class="dropdown" id="dropdown" style="color: black;" name="playerId">
+            <c:forEach items="${players}" var="player">
+                <option value="${player.id}">${player.name}</option>
+            </c:forEach>
+            </select>
             <button type="button" class="btn btn-primary ms-2" id="draft">Draft Player</button>
         </div>
             <h2 class="text-center">Fantasy Football Draft</h2>
@@ -22,19 +28,10 @@
             <thead>
                 <tr>
                 <th scope="col">Round #</th>
-                <th scope="col" id="team1"><a href="team1.html">Team 1</th>
-                <th scope="col" id="team2"><a href="team2.html">Team 2</th>
-                <th scope="col" id="team3"><a href="team3.html">Team 3</th>
-                <th scope="col" id="team4"><a href="team4.html">Team 4</th>
-                <th scope="col" id="team5"><a href="team5.html">Team 5</th>
-                <th scope="col" id="team6"><a href="team6.html">Team 6</th>
-                <th scope="col" id="team7"><a href="team7.html">Team 7</th>
-                <th scope="col" id="team8"><a href="team8.html">Team 8</th>
-                <th scope="col" id="team9"><a href="team9.html">Team 9</th>
-                <th scope="col" id="team10"><a href="team10.html">Team 10</th>
-                <th scope="col" id="team11"><a href="team11.html">Team 11</th>
-                <th scope="col" id="team12"><a href="team12.html">Team 12</th>
+                <c:forEach items="{teams}" var="team">
+                <th scope="col"><a href="/team/detail/${team.id}">Team ${team.id}</a></th>
                 </tr>
+                </c:forEach>
             </thead>
             <tbody>
                 <tr>
