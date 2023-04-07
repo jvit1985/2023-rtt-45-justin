@@ -58,7 +58,7 @@ public class UserController {
         userForm.setPassword(user.getPassword());
         userForm.setFirstName(user.getFirstName());
         userForm.setLastName(user.getLastName());
-        userForm.setId(user.getId());
+
 
         response.addObject("teamForm", teamForm);
         response.addObject("userForm", userForm);
@@ -94,13 +94,12 @@ public class UserController {
 
         team.setTeamName(teamForm.getTeamName());
         team.setTeamPicture(teamForm.getTeamPicture());
-        team.setUserId(team.getUserId());
         team.setId(teamForm.getId());
         user.setEmail(userForm.getEmail());
         user.setPassword(userForm.getPassword());
         user.setFirstName(userForm.getFirstName());
         user.setLastName(userForm.getLastName());
-        user.setId(userForm.getId());
+
 
         teamDAO.save(team);
         userDAO.save(user);

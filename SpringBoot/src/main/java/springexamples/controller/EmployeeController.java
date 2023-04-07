@@ -76,7 +76,7 @@ public class EmployeeController {
 
     }
 
-    @GetMapping("/createSubmit")
+    @PostMapping("/createSubmit")
     public ModelAndView createSubmit(EmployeeFormBean form) {
         ModelAndView response = new ModelAndView("employee/create");
 
@@ -104,6 +104,8 @@ public class EmployeeController {
         employeeDAO.save(emp);
         response.addObject("form", form);
 
+//        response.setViewName("redirect:/employee/edit/" + emp.getId());
+//
         return response;
     }
 

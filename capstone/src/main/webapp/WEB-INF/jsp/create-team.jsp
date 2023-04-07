@@ -89,8 +89,8 @@
     <section>
         <h1 class="text-center mt-3">Create Teams</h1>
         <div class="container">
-        <h3 class="justify-content-start my-3">Add Team Owner Names</h3>
-            <form>
+        <h3 class="justify-content-start my-3">Add Team Names</h3>
+            <form action="create-team" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="team1" class="form-label">Team 1</label>
                     <input type="text" class="form-control" name="team1name" id="team1name">

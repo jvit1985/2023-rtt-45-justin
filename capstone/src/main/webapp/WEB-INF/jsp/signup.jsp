@@ -78,7 +78,7 @@ body {
         <h1 class="text-center">Signup</h1>
         <div class="container">
         <h3 class="justify-content-start">New User Form</h3>
-            <form>
+            <form action="/signup" method="post">
                 <div class="mb-3" style="width: 50%;">
                   <label for="exampleInputEmail" class="form-label">Email address</label>
                   <input type="email" class="form-control" name="email" id="exampleInputEmail" aria-describedby="emailHelp">
@@ -101,31 +101,7 @@ body {
                     <input type="password" class="form-control" id="confirmPassword" aria-describedby="ConfirmPasswordHelp">
                     <div id="confirmPasswordHelp" class="form-text" style="font-weight: bolder; color:white;">Please re-enter your password</div>
                   </div>
-                    <div class="mb-3 dropdown">
-                        <h6 class="mt-3 mb-1" style="font-weight: bold;">Draft Position</h6>
-                        <select name="teamNumber" id="draftPosition">
-                            <option value="1">Team 1</option>
-                            <option value="2">Team 2</option>
-                            <option value="3">Team 3</option>
-                            <option value="4">Team 4</option>
-                            <option value="5">Team 5</option>
-                            <option value="6">Team 6</option>
-                            <option value="7">Team 7</option>
-                            <option value="8">Team 8</option>
-                            <option value="9">Team 9</option>
-                            <option value="10">Team 10</option>
-                            <option value="11">Team 11</option>
-                            <option value="12">Team 12</option>
-                        </select>
-                    </div>
-                    <div class="mb-3" style="width: 50%;">
-                         <label for="teamName" class="form-label">Team Name</label>
-                         <input type="text" class="form-control" name="teamName" id="teamName" aria-describedby="teamNameHelp">
-                    </div>
-                      <div class="mb-3" style="width: 50%;">
-                        <label htmlFor="image" style="font-weight: bold;">Upload Profile Picture(Optional)</label>
-                        <input type="file" id="image" name="teamPicture" accept="image/jpeg, image/png, image/svg"/>
-                      </div>
+
                 <button type="submit" class="btn btn-primary mt-3" id="signup-submit" onclick="formSubmit()">Submit</button>
 
               </form>

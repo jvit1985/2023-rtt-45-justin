@@ -24,11 +24,13 @@ public class Team {
     @Column(name = "team_name")
     private String teamName;
 
-    @Column(name = "user_id")
-    private Integer userId;
-
     @Column(name = "team_picture")
     private String teamPicture;
+
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ToString.Exclude
 //    @LazyCollection(LazyCollectionOption.FALSE)

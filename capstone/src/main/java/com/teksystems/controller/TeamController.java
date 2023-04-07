@@ -7,6 +7,7 @@ import com.teksystems.database.dao.UserDAO;
 import com.teksystems.database.entity.Player;
 import com.teksystems.database.entity.Team;
 import com.teksystems.database.entity.TeamPlayer;
+import com.teksystems.database.entity.User;
 import com.teksystems.formbeans.TeamFormBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class TeamController {
     private TeamPlayerDAO teamPlayerDAO;
 
     @Autowired
-    private PlayerDAO playerDAO;
+    private UserDAO userDAO;
 
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable Integer id) {
@@ -60,7 +61,6 @@ public class TeamController {
         teamForm.setId(team.getId());
         teamForm.setTeamName(team.getTeamName());
         teamForm.setTeamPicture(team.getTeamPicture());
-        teamForm.setUserId(team.getUserId());
 
         response.addObject("teamForm", teamForm);
 
@@ -76,11 +76,12 @@ public class TeamController {
     }
 
     @GetMapping("/createSubmit")
-    public ModelAndView createSubmit(TeamFormBean teamForm) {
+    public ModelAndView createSubmit(TeamFormBean teamForm, @RequestParam Integer userId) {
         ModelAndView response = new ModelAndView("team/create");
         log.debug("In team createSubmit controller method");
         log.debug(teamForm.toString());
 
+        User user = userDAO.findById(userId);
         Team team = new Team();
 
         if (teamForm.getId() != null && teamForm.getId() > 0) {
@@ -89,8 +90,8 @@ public class TeamController {
 
         team.setTeamName(teamForm.getTeamName());
         team.setTeamPicture(teamForm.getTeamPicture());
-        team.setUserId(team.getUserId());
         team.setId(teamForm.getId());
+        team.setUser(user);
 
         teamDAO.save(team);
         response.addObject("teamForm", teamForm);

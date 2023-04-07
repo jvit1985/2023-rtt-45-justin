@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2e52023-9cb2-46d5-a10f-ad1c63821173" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/springexamples/controller/FileUploadController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/fileupload.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/springexamples/database/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/springexamples/database/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/pub/images/professional picture.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/include/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/include/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/springexamples/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springexamples/controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/springexamples/controller/SlashController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springexamples/controller/SlashController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/employee/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/employee/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/SlashController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/SlashController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/TeamController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/dao/TeamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/dao/TeamDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/entity/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/entity/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/create-team.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/create-team.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/signup.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

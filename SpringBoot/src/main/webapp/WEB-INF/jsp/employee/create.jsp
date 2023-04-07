@@ -16,7 +16,7 @@
 
 <section>
         <div class="container">
-            <form action="/employee/createSubmit" style="width: 50%;">
+            <form action="/employee/createSubmit" method="post" style="width: 50%;">
             <input type="hidden" name="id" value="${form.id}"/>
                 <div class="mb-4">
                   <label for="exampleInputEmail" class="form-label">Email address</label>
