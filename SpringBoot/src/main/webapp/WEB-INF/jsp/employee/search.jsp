@@ -50,8 +50,8 @@
                     <td>${emp.firstName}</td>
                     <td>${emp.lastName}</td>
                     <td>${emp.email}</td>
-                    <td>${emp.city}</td>
-                    <td>${emp.job_title}</td>
+                    <td>${emp.officeId}</td>
+                    <td>${emp.jobTitle}</td>
                     <td><a href="/employee/edit/${emp.id}">Edit</a></td>
                 </tr>
               </c:forEach>
