@@ -16,29 +16,31 @@
     </style>
 
 <main>
-        <h1 class="text-center mt-3">{team.teamName}</h1>
+        <h1 class="text-center mt-3">${player.name}</h1>
+
         <div class="profile-picture text-center">
             <img src="pub/images/profileImage.png" alt="Team${team.id} Profile Picture" style="height: 20%; width: 20%;">
         </div>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                <th scope="col">Player Position</th>
-                <th scope="col">Player Name</th>
-                <th scope="col">Player Team</th>
-                <th scope="col">Player Bye Week</th>
-                </tr>
-            </thead>
+
             <tbody>
-              <c:forEach items="${teamPlayers}" var="player">
                 <tr>
-                    <td>{player.position}</td>
-                    <td>{player.name}</td>
-                    <td>{player.team}</td>
-                    <td>{player.bye}</td>
+                    <th scope="row">Id</th>
+                    <td>${player.id}</td>
                 </tr>
-              </c:forEach>
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>${player.name}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Team</th>
+                    <td>${player.team}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Bye</th>
+                    <td>${player.bye}</td>
+                </tr>
             </tbody>
         </table>
         </div>

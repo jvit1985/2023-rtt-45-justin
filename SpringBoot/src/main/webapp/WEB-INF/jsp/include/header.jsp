@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/index">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link active" aria-current="page" href="/index">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/signup">Signup</a>
@@ -43,6 +45,26 @@
                 <li><a class="dropdown-item" href="/employee/search">Search</a></li>
                 </ul>
             </li>
+            <sec:authorize access="isAuthenticated()">
+            <li class="nav-item">
+                <a class="nav-link" href="/login/logout">Logout</a>
+            </li>
+            <li class="nav-item">
+                 <a class="nav-link" href=""><sec:authentication property="principal.username" /></a>
+            </li>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
+            <li class="nav-item">
+                 <a class="nav-link" href="/login/login">Login</a>
+            </li>
+            </sec:authorize>
+
+
+            <sec:authorize access="hasAnyAuthority('ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="">Admin Link</a>
+                </li>
+            </sec:authorize>
           </ul>
         </div>
       </div>

@@ -15,5 +15,4 @@ public class TeamFormBean {
 
     private String teamPicture;
 
-    private Integer userId;
 }

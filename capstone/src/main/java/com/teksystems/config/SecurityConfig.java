@@ -1,4 +1,4 @@
-package springexamples.config;
+package com.teksystems.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 // any urls you want to secure you put in request matchers separated by a comma
-                .authorizeHttpRequests().requestMatchers("/employee/**").authenticated()
+                .authorizeHttpRequests().requestMatchers("/player/**", "/draftboard", "/create-teams").authenticated()
                 .anyRequest().permitAll().and().formLogin().loginPage("/login/login")
                 .loginProcessingUrl("/login/loginpost")
                 .defaultSuccessUrl("/")

@@ -78,7 +78,7 @@ body {
         <h1 class="text-center">Signup</h1>
         <div class="container">
         <h3 class="justify-content-start">New User Form</h3>
-            <form action="/signup" method="post">
+            <form action="/signupSubmit" method="post">
                 <div class="mb-3" style="width: 50%;">
                   <label for="exampleInputEmail" class="form-label">Email address</label>
                   <input type="email" class="form-control" name="email" id="exampleInputEmail" aria-describedby="emailHelp">

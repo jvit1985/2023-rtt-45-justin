@@ -9,7 +9,7 @@ import java.util.List;
 public interface PlayerDAO extends JpaRepository<Player, Long> {
 
 
-    @Query("FROM Player")
+    @Query("FROM Player p")
     List<Player> getAllPlayers();
 
     Player findById(Integer id);

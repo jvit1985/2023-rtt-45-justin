@@ -10,14 +10,16 @@ import com.teksystems.database.entity.TeamPlayer;
 import com.teksystems.database.entity.User;
 import com.teksystems.formbeans.TeamFormBean;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -51,20 +53,30 @@ public class TeamController {
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView edit(@PathVariable Integer id) {
+    public ModelAndView edit(@PathVariable Integer id, TeamFormBean form, @RequestParam(required = false)MultipartFile fileUpload) throws IOException {
         ModelAndView response = new ModelAndView("team/edit");
         log.debug("In team controller - edit method");
 
         Team team = teamDAO.findById(id);
-        TeamFormBean teamForm = new TeamFormBean();
 
-        teamForm.setId(team.getId());
-        teamForm.setTeamName(team.getTeamName());
-        teamForm.setTeamPicture(team.getTeamPicture());
+        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
+        log.debug(target.getAbsolutePath());
+        FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
 
-        response.addObject("teamForm", teamForm);
+
+        response.addObject("fileUrl", "/pub/images/" + fileUpload.getOriginalFilename());
+
+        team.setId(form.getId());
+        team.setTeamName(form.getTeamName());
+        team.setTeamPicture("/pub/images" + fileUpload.getOriginalFilename());
+
+
+        teamDAO.save(team);
+
+        response.addObject("form", form);
 
         return response;
+
     }
 
     @GetMapping("/create")
@@ -76,25 +88,39 @@ public class TeamController {
     }
 
     @GetMapping("/createSubmit")
-    public ModelAndView createSubmit(TeamFormBean teamForm, @RequestParam Integer userId) {
+    public ModelAndView createSubmit(TeamFormBean form, @RequestParam Integer userId) {
         ModelAndView response = new ModelAndView("team/create");
         log.debug("In team createSubmit controller method");
-        log.debug(teamForm.toString());
+        log.debug(form.toString());
 
         User user = userDAO.findById(userId);
         Team team = new Team();
 
-        if (teamForm.getId() != null && teamForm.getId() > 0) {
-            team = teamDAO.findById(teamForm.getId());
+        if (form.getId() != null && form.getId() > 0) {
+            team = teamDAO.findById(form.getId());
         }
 
-        team.setTeamName(teamForm.getTeamName());
-        team.setTeamPicture(teamForm.getTeamPicture());
-        team.setId(teamForm.getId());
+        team.setTeamName(form.getTeamName());
+        team.setTeamPicture(form.getTeamPicture());
+        team.setId(form.getId());
         team.setUser(user);
 
         teamDAO.save(team);
-        response.addObject("teamForm", teamForm);
+        response.addObject("form", form);
+
+        return response;
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView teamSearch(@RequestParam(required = false) String teamSearch) {
+        log.debug("In the team search controller method with teamName = " + teamSearch);
+        ModelAndView response = new ModelAndView("team/search");
+
+        List<Team> teams = teamDAO.findByTeamNameContainingIgnoreCase(teamSearch);
+
+        response.addObject("teamList", teams);
+        response.addObject("teamSearchParam", teamSearch);
+
 
         return response;
     }

@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,29 +14,62 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="pub/css/global.css" />
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(43,38,111)">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/signup" style="color: white;">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/signup" style="color: white;">Signup</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/create-team" style="color: white;">Create Teams</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/draftboard" style="color: white;">Draftboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/team/detail/1" style="color: white;">My Team</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="box-shadow: 2px 2px 5px 1px rgba(255,0,0,0.2);">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/index">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Signup</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/create-team">Create Teams</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/draftboard">Draftboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/team/detail/${team.id}">My Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/team/viewAll">View All Teams</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/player/detail/${player.id}">Player Details</a>
+            </li>
+            <sec:authorize access="isAuthenticated()">
+              <li class="nav-item">
+                <a class="nav-link" href="/login/logout">Logout</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href=""><sec:authentication property="principal.username" /></a>
+              </li>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
+              <li class="nav-item">
+                 <a class="nav-link" href="/login/login">Login</a>
+              </li>
+            </sec:authorize>
+
+
+            <sec:authorize access="hasAnyAuthority('ADMIN')">
+              <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin Link</a>
+                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="/team/edit/${team.id}">Edit Team</a></li>
+                    <li><a class="dropdown-item" href="/player/edit/${player.id}">Edit Player</a></li>
+              </li>
+            </sec:authorize>
+
+          </ul>
+        </div>
+      </div>
+    </nav>

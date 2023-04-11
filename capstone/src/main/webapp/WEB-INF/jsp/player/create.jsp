@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="../includes/header.jsp" />
 
 <section class="py-5 bg-dark-grey">
     <div class="container text-center">
@@ -19,52 +19,37 @@
             <form action="/player/createSubmit" style="width: 50%;">
             <input type="hidden" name="id" value="${form.id}"/>
                 <div class="mb-4">
-                  <label for="exampleInputEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email" name="email"
-                  aria-describedby="emailHelp" value="${form.email}">
+                  <label for="playerName" class="form-label">Player Name</label>
+                  <input type="text" class="form-control" id="name" name="name"
+                  aria-describedby="playerNameHelp" value="${form.name}">
                 </div>
                 <div class="mb-4">
-                    <label for="firstName" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="firstName" name="firstName"
-                    aria-describedby="firstNameHelp" value="${form.firstName}">
+                    <label for="team" class="form-label">Team</label>
+                    <input type="text" class="form-control" id="team" name="team"
+                    aria-describedby="teamHelp" value="${form.team}">
                   </div>
                   <div class="mb-4">
-                    <label for="lastName" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" name="lastName"
-                    aria-describedby="lastNameHelp" value="${form.lastName}">
+                    <label for="position" class="form-label">Position</label>
+                    <input type="text" class="form-control" id="position" name="position"
+                    aria-describedby="positionHelp" value="${form.position}">
                   </div>
-                  <div class="mb-4">
-                     <label for="officeId" class="form-label">Office</label>
-                     <select class="form-select" id="officeId" name="officeId">
-                        <c:forEach items="${offices}" var="office">
-                         <option value="${office.id}"
-                                <c:if test="${office.id eq form.officeId}">
-                                    selected
-                                </c:if>
-                         >${office.city}</option>
-                        </c:forEach>
-                     </select>
-                  </div>
-                <div class="mb-4">
-                  <label for="extension" class="form-label">Extension</label>
-                  <input type="text" class="form-control" id="extension" name="extension"
-                  aria-describedby="extensionHelp" value="${form.extension}">
 
-                </div>
                 <div class="mb-4">
-                    <label for="jobTitle" class="form-label">Job Title</label>
-                    <input type="text" class="form-control" id="jobTitle" name="jobTitle"
-                    aria-describedby="jobTitleHelp" value="${form.jobTitle}">
-                  </div>
-                <div class="mb-4">
-                    <label for="vacationHours" class="form-label">Vacation Hours</label>
-                    <input type="number" class="form-control" id="vacationHours" name="vacationHours"
-                    aria-describedby="vacationHoursHelp" value="${form.vacationHours}">
+                  <label for="bye" class="form-label">Bye Week</label>
+                  <input type="text" class="form-control" id="bye" name="bye"
+                  aria-describedby="byeHelp" value="${form.bye}">
                 </div>
+                <c:if test="${empty form.id}">
+                     <button type="submit" id="create_btn" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Create Player</button>
+                </c:if>
+                <c:if test="${not empty form.id}">
+                     <button type="submit" id="edit_btn" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Edit Player</button>
 
-                <button type="submit" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Create Account</button>
+                </c:if>
+
+
             </form>
         </div>
     </section>
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../includes/footer.jsp" />

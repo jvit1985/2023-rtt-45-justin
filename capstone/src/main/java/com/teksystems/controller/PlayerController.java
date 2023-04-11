@@ -4,6 +4,7 @@ import com.teksystems.database.dao.PlayerDAO;
 import com.teksystems.database.entity.Player;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ public class PlayerController {
     @Autowired
     private PlayerDAO playerDAO;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/create")
     public ModelAndView create() {
         ModelAndView response = new ModelAndView("player/create");
@@ -29,44 +31,48 @@ public class PlayerController {
         return response;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable Integer id) {
         ModelAndView response = new ModelAndView("player/create");
         log.debug("In player controller - edit player");
 
         Player player = playerDAO.findById(id);
-        PlayerFormBean playerForm = new PlayerFormBean();
+        PlayerFormBean form = new PlayerFormBean();
 
-        playerForm.setId(player.getId());
-        playerForm.setName(player.getName());
-        playerForm.setPosition(player.getPosition());
-        playerForm.setTeam(player.getTeam());
-        playerForm.setBye(player.getBye());
+        form.setId(player.getId());
+        form.setName(player.getName());
+        form.setPosition(player.getPosition());
+        form.setTeam(player.getTeam());
+        form.setBye(player.getBye());
 
-        response.addObject("playerForm", playerForm);
+        response.addObject("form", form);
 
         return response;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/createSubmit")
-    public ModelAndView createSubmit(PlayerFormBean playerForm) {
+    public ModelAndView createSubmit(PlayerFormBean form) {
         ModelAndView response = new ModelAndView("player/create");
         log.debug("In player createSubmit controller method");
-        log.debug(playerForm.toString());
+        log.debug(form.toString());
 
         Player player = new Player();
 
-        if(playerForm.getId() != null && playerForm.getId() >= 0) {
-            player = playerDAO.findById(playerForm.getId());
+        if(form.getId() != null && form.getId() >= 0) {
+            player = playerDAO.findById(form.getId());
         }
 
-        player.setName(playerForm.getName());
-        player.setTeam(playerForm.getTeam());
-        player.setPosition(playerForm.getPosition());
-        player.setBye(playerForm.getBye());
+        player.setName(form.getName());
+        player.setTeam(form.getTeam());
+        player.setPosition(form.getPosition());
+        player.setBye(form.getBye());
 
         playerDAO.save(player);
-        response.addObject("playerForm", playerForm);
+        response.addObject("form", form);
+
+        response.setViewName("redirect:/player/edit/" + player.getId());
 
         return response;
 
@@ -74,8 +80,8 @@ public class PlayerController {
 
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable Integer id) {
-        ModelAndView response = new ModelAndView("employee/detail");
-        log.debug("In employee detail controller method with id = " + id);
+        ModelAndView response = new ModelAndView("player/detail");
+        log.debug("In player detail controller method with id = " + id);
         Player player = playerDAO.findById(id);
 
         response.addObject("player", player);

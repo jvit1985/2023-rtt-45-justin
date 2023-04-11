@@ -18,7 +18,7 @@
 <main>
         <h1 class="text-center mt-3">${team.teamName}</h1>
         <div class="profile-picture text-center">
-            <img src="${team.teamPicture}" alt="Team1 Profile Picture" style="height: 20%; width: 20%;">
+            <img src="${team.teamPicture}" alt="Team ${team.id} Profile Picture" style="height: 20%; width: 20%;">
         </div>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">

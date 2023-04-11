@@ -1,14 +1,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="../includes/header.jsp" />
 
 <section class="py-5 bg-dark-grey">
     <div class="container text-center">
     <c:if test="${empty form.id}">
-        <h1>Create Employee</h1>
+        <h1>Create Team</h1>
     </c:if>
     <c:if test="${not empty form.id}">
-            <h1>Edit Employee</h1>
+            <h1>Edit Team</h1>
 
     </c:if>
     </div>
@@ -16,55 +16,33 @@
 
 <section>
         <div class="container">
-            <form action="/employee/createSubmit" style="width: 50%;">
-            <input type="hidden" name="id" value="${form.id}"/>
+            <form action="/team/createSubmit" style="width: 50%;">
+            <input type="hidden" name="userId" value="${form.userId}"/>
                 <div class="mb-4">
-                  <label for="exampleInputEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email" name="email"
-                  aria-describedby="emailHelp" value="${form.email}">
+                  <label for="id" class="form-label">Team Number</label>
+                  <input type="text" class="form-control" id="id" name="id"
+                  aria-describedby="idHelp" value="${form.id}">
                 </div>
                 <div class="mb-4">
-                    <label for="firstName" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="firstName" name="firstName"
-                    aria-describedby="firstNameHelp" value="${form.firstName}">
+                    <label for="teamName" class="form-label">Team Name</label>
+                    <input type="text" class="form-control" id="teamName" name="teamName"
+                    aria-describedby="teamNameHelp" value="${form.teamName}">
                   </div>
                   <div class="mb-4">
-                    <label for="lastName" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" name="lastName"
-                    aria-describedby="lastNameHelp" value="${form.lastName}">
+                    <label for="teamPicture" class="form-label">Team Picture</label>
+                    <input type="file" class="form-control" id="teamPicture" name="teamPicture"
+                    aria-describedby="teamPictureHelp" value="${form.teamPicture}">
                   </div>
-                  <div class="mb-4">
-                     <label for="officeId" class="form-label">Office</label>
-                     <select class="form-select" id="officeId" name="officeId">
-                        <c:forEach items="${offices}" var="office">
-                         <option value="${office.id}"
-                                <c:if test="${office.id eq form.officeId}">
-                                    selected
-                                </c:if>
-                         >${office.city}</option>
-                        </c:forEach>
-                     </select>
-                  </div>
-                <div class="mb-4">
-                  <label for="extension" class="form-label">Extension</label>
-                  <input type="text" class="form-control" id="extension" name="extension"
-                  aria-describedby="extensionHelp" value="${form.extension}">
 
-                </div>
-                <div class="mb-4">
-                    <label for="jobTitle" class="form-label">Job Title</label>
-                    <input type="text" class="form-control" id="jobTitle" name="jobTitle"
-                    aria-describedby="jobTitleHelp" value="${form.jobTitle}">
-                  </div>
-                <div class="mb-4">
-                    <label for="vacationHours" class="form-label">Vacation Hours</label>
-                    <input type="number" class="form-control" id="vacationHours" name="vacationHours"
-                    aria-describedby="vacationHoursHelp" value="${form.vacationHours}">
-                </div>
+                <c:if test="${empty form.id}">
+                  <button type="submit" id="create_btn" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Create Team</button>
+                </c:if>
+                <c:if test="${not empty form.id}">
+                  <button type="submit" id="edit_btn" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Edit Team</button>
 
-                <button type="submit" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Create Account</button>
+                </c:if>
             </form>
         </div>
     </section>
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../includes/footer.jsp" />

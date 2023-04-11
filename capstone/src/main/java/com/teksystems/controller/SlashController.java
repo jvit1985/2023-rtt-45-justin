@@ -1,14 +1,12 @@
 package com.teksystems.controller;
 
-import com.teksystems.database.dao.PlayerDAO;
-import com.teksystems.database.dao.TeamDAO;
-import com.teksystems.database.dao.TeamPlayerDAO;
-import com.teksystems.database.dao.UserDAO;
+import com.teksystems.database.dao.*;
 import com.teksystems.database.entity.Player;
 import com.teksystems.database.entity.Team;
 import com.teksystems.database.entity.User;
+import com.teksystems.database.entity.UserRole;
 import com.teksystems.formbeans.TeamFormBean;
-import com.teksystems.formbeans.UserFormBean;
+import com.teksystems.formbeans.CreateUserFormBean;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -26,19 +26,34 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RequestMapping(value = {"/index", "/", "/index.html"}, method = RequestMethod.GET)
 public class SlashController {
 
     @Autowired
-    TeamPlayerDAO teamPlayerDAO;
+    private TeamPlayerDAO teamPlayerDAO;
 
     @Autowired
-    TeamDAO teamDAO;
+    private UserRoleDAO userRoleDAO;
 
     @Autowired
-    UserDAO userDAO;
+    private TeamDAO teamDAO;
 
     @Autowired
-    PlayerDAO playerDAO;
+    private UserDAO userDAO;
+
+    @Autowired
+    private PlayerDAO playerDAO;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public ModelAndView index() {
+        log.debug("In the index controller method");
+        ModelAndView response = new ModelAndView("index");
+
+        return response;
+    }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView signup() {
@@ -47,28 +62,30 @@ public class SlashController {
         return response;
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView signup(UserFormBean userForm) {
+    @PostMapping("/signupSubmit")
+    public ModelAndView signup(CreateUserFormBean form) {
         ModelAndView response = new ModelAndView("signup");
-
-        log.debug(userForm.toString());
+        log.debug("In the signup controller post method");
 
         User user = new User();
+        user.setEmail(form.getEmail());
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
 
+        String encryptedPassword = passwordEncoder.encode(form.getPassword());
+        user.setPassword(encryptedPassword);
 
-
-//        if (userForm.getId() != null && userForm.getId() > 0) {
-//            user = userDAO.findById(userForm.getId());
-//        }
-
-        user.setFirstName(userForm.getFirstName());
-        user.setLastName(userForm.getLastName());
-        user.setEmail(userForm.getEmail());
-        user.setPassword(userForm.getPassword());
+        //will auto generate the ID and it will populate the field in the user entity
         userDAO.save(user);
 
+        UserRole userRole = new UserRole();
+        userRole.setRoleName("USER");
+        //so when we go to set the user id FK on the user role entity the user id has already populated.
+        userRole.setUserId(user.getId());
 
-        response.addObject("userForm", userForm);
+        userRoleDAO.save(userRole);
+
+        log.debug(form.toString());
 
         return response;
     }
