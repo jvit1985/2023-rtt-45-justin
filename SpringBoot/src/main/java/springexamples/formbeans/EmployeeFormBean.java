@@ -19,7 +19,7 @@ public class EmployeeFormBean {
     private Integer id;
 
     @NotEmpty(message = "Email address is required.")
-    @Length(max = 20, message = "Email can not be longer than 20 characters")
+    @Length(max = 100, message = "Email can not be longer than 100 characters")
     @Pattern(regexp = ".+@.+\\.[a-z]+", message = "Invalid email format")
     @EmailUnique(message = "Email already exists in database")
     private String email;

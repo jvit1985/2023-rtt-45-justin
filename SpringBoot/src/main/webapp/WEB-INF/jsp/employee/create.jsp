@@ -17,6 +17,12 @@
 <section>
         <div class="container">
             <form action="/employee/createSubmit" method="post" style="width: 50%;">
+
+            <c:if test="${success}">
+                <div class="alert alert-success" role="alert">
+                    Employee Created
+                </div>
+            </c:if>
             <input type="hidden" name="id" value="${form.id}"/>
                 <div class="mb-4">
                   <label for="exampleInputEmail" class="form-label">Email address</label>

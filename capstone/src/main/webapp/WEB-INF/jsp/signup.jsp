@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <jsp:include page="includes/header.jsp" />
 
 <style>
@@ -79,30 +81,61 @@ body {
         <div class="container">
         <h3 class="justify-content-start">New User Form</h3>
             <form action="/signupSubmit" method="post">
+            <c:if test="${success}">
+              <div class="alert alert-success" role="alert">
+                 User Created
+              </div>
+            </c:if>
+
                 <div class="mb-3" style="width: 50%;">
                   <label for="exampleInputEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" name="email" id="exampleInputEmail" aria-describedby="emailHelp">
+                  <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+                  <c:if test="${bindingResult.hasFieldErrors('email')}">
+                    <c:forEach items="${bindingResult.getFieldErrors('email')}" var="error">
+                        <div style="color:white">${error.getDefaultMessage()}</div>
+                    </c:forEach>
+                  </c:if>
                 </div>
                 <div class="mb-3" style="width: 50%;">
                     <label for="firstName" class="form-label">First Name</label>
                     <input type="text" class="form-control" name="firstName" id="firstName" aria-describedby="firstNameHelp">
+                  <c:if test="${bindingResult.hasFieldErrors('firstName')}">
+                    <c:forEach items="${bindingResult.getFieldErrors('firstName')}" var="error">
+                        <div style="color:white">${error.getDefaultMessage()}</div>
+                    </c:forEach>
+                  </c:if>
                   </div>
                   <div class="mb-3" style="width: 50%;">
                     <label for="lastName" class="form-label">Last Name</label>
                     <input type="text" class="form-control" name="lastName" id="lastName" aria-describedby="lastNameHelp">
+                  <c:if test="${bindingResult.hasFieldErrors('lastName')}">
+                    <c:forEach items="${bindingResult.getFieldErrors('lastName')}" var="error">
+                        <div style="color:white">${error.getDefaultMessage()}</div>
+                    </c:forEach>
+                  </c:if>
                   </div>
                 <div class="mb-3" style="width: 50%;">
                   <label for="password" class="form-label">Password</label>
                   <input type="password" class="form-control" name="password" id="password" aria-describedby="PasswordHelp">
                   <div id="passwordHelp" class="form-text" style="font-weight: bolder; color: white;">Password must be 8 characters long and contain 1 Uppercase, 1 lowercase, and 1 number</div>
+                  <c:if test="${bindingResult.hasFieldErrors('password')}">
+                    <c:forEach items="${bindingResult.getFieldErrors('password')}" var="error">
+                        <div style="color:white">${error.getDefaultMessage()}</div>
+                    </c:forEach>
+                  </c:if>
                 </div>
                 <div class="mb-3" style="width: 50%;">
                     <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" aria-describedby="ConfirmPasswordHelp">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" aria-describedby="ConfirmPasswordHelp">
                     <div id="confirmPasswordHelp" class="form-text" style="font-weight: bolder; color:white;">Please re-enter your password</div>
+                  <c:if test="${bindingResult.hasFieldErrors('confirmPassword')}">
+                    <c:forEach items="${bindingResult.getFieldErrors('confirmPassword')}" var="error">
+                        <div style="color:white">${error.getDefaultMessage()}</div>
+                    </c:forEach>
+                  </c:if>
                   </div>
 
-                <button type="submit" class="btn btn-primary mt-3" id="signup-submit" onclick="formSubmit()">Submit</button>
+                <button type="submit" class="btn btn-primary mt-3" id="signup-submit">Submit</button>
 
               </form>
         </div>

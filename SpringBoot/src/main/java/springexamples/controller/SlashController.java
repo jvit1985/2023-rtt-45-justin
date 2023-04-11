@@ -1,5 +1,6 @@
 package springexamples.controller;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +13,7 @@ import springexamples.database.dao.UserRoleDAO;
 import springexamples.database.entity.User;
 import springexamples.database.entity.UserRole;
 import springexamples.formbeans.CreateUserFormBean;
+import springexamples.security.AuthenticatedUserService;
 
 @Slf4j
 @Controller
@@ -27,11 +29,16 @@ public class SlashController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
+
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView index() {
+    public ModelAndView index(HttpSession session) {
         log.debug("In the index controller method");
         ModelAndView response = new ModelAndView("index");
+
+        log.debug("################### SESSION ATTRIBUTE NAME = " + session.getAttribute("name"));
 
         log.trace("This is a trace log example");
         log.info("This is an info log example");
@@ -50,7 +57,7 @@ public class SlashController {
     }
 
     @PostMapping("/signupSubmit")
-    public ModelAndView setup(CreateUserFormBean form) {
+    public ModelAndView setup(CreateUserFormBean form, HttpSession session) {
 
         ModelAndView response = new ModelAndView("signup");
         log.debug("In the signup controller post method");
@@ -71,6 +78,9 @@ public class SlashController {
         userRole.setUserId(user.getId());
 
         userRoleDAO.save(userRole);
+
+        //authenticate the user that was just created, needs to be after user and userrole are saved to db
+        authenticatedUserService.changeLoggedInUsername(session, form.getEmail(), form.getPassword());
 
         log.debug(form.toString());
 

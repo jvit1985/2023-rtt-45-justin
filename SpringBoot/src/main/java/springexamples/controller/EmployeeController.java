@@ -121,6 +121,8 @@ public class EmployeeController {
 
         employeeDAO.save(emp);
         response.addObject("form", form);
+        response.addObject("success", true);
+        form.setId(emp.getId());
 
 //        response.setViewName("redirect:/employee/edit/" + emp.getId());
 //

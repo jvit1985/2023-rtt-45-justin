@@ -7,10 +7,13 @@ import com.teksystems.database.entity.User;
 import com.teksystems.database.entity.UserRole;
 import com.teksystems.formbeans.TeamFormBean;
 import com.teksystems.formbeans.CreateUserFormBean;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,9 +66,20 @@ public class SlashController {
     }
 
     @PostMapping("/signupSubmit")
-    public ModelAndView signup(CreateUserFormBean form) {
+    public ModelAndView signup(@Valid CreateUserFormBean form, BindingResult bindingResult) {
         ModelAndView response = new ModelAndView("signup");
         log.debug("In the signup controller post method");
+
+        if(bindingResult.hasErrors()) {
+            for (FieldError error: bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+            }
+
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+
+            return response;
+        }
 
         User user = new User();
         user.setEmail(form.getEmail());
@@ -77,6 +91,8 @@ public class SlashController {
 
         //will auto generate the ID and it will populate the field in the user entity
         userDAO.save(user);
+        response.addObject("form", form);
+        response.addObject("success", true);
 
         UserRole userRole = new UserRole();
         userRole.setRoleName("USER");
