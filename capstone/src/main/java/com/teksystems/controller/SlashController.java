@@ -1,10 +1,8 @@
 package com.teksystems.controller;
 
 import com.teksystems.database.dao.*;
-import com.teksystems.database.entity.Player;
-import com.teksystems.database.entity.Team;
-import com.teksystems.database.entity.User;
-import com.teksystems.database.entity.UserRole;
+import com.teksystems.database.entity.*;
+import com.teksystems.formbeans.PlayerFormBean;
 import com.teksystems.formbeans.TeamFormBean;
 import com.teksystems.formbeans.CreateUserFormBean;
 import jakarta.validation.Valid;
@@ -113,10 +111,26 @@ public class SlashController {
 
         List<Player> players = playerDAO.getAllPlayers();
         List<Team> teams = teamDAO.getAllTeams();
+        List<TeamPlayer> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
         response.addObject("teams", teams);
         response.addObject("players", players);
+
         return response;
     }
+
+    @PostMapping("/draftboard")
+    public ModelAndView draftboard(PlayerFormBean form, @RequestParam Integer teamId, @RequestParam Integer draftPickNumber) {
+        ModelAndView response = new ModelAndView("draftboard");
+
+        Team team = teamDAO.findById(teamId);
+        Player player = new Player();
+        player.getId();
+        player.getBye();
+        player.getTeam();
+        player.getPosition();
+        player.getName();
+    }
+
 
     @RequestMapping(value = "/create-team", method = RequestMethod.GET)
     public ModelAndView createTeam() {

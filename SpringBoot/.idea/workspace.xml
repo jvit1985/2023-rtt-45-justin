@@ -5,23 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2e52023-9cb2-46d5-a10f-ad1c63821173" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/springexamples/security/AuthenticatedUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/validation/EmailUnique.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/validation/EmailUniqueImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../soapexamples/src/main/java/perscholas/SpringSoapDemo/config/WebServiceConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../soapexamples/src/main/java/perscholas/SpringSoapDemo/controller/RestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../soapexamples/src/main/java/perscholas/SpringSoapDemo/dao/BookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../soapexamples/src/main/java/perscholas/SpringSoapDemo/webservices/BookEndPoint" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../soapexamples/src/main/resources/Book.xsd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/springexamples/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springexamples/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/springexamples/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springexamples/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/springexamples/controller/SlashController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springexamples/controller/SlashController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/springexamples/database/dao/EmployeeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springexamples/database/dao/EmployeeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/springexamples/database/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springexamples/database/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/springexamples/formbeans/EmployeeFormBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springexamples/formbeans/EmployeeFormBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/springexamples/validation/EmailUniqueImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springexamples/validation/EmailUniqueImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/employee/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/employee/create.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/SlashController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/SlashController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/formbeans/CreateUserFormBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/formbeans/CreateUserFormBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/draftboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/draftboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,14 +40,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="springexamples.database.dao" />

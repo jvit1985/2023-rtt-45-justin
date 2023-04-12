@@ -36,7 +36,13 @@
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td id="pick1">1</td>
+                    <c:forEach items="${teamPlayers}" var="player">
+                    <td "${player.name}/n"
+                        "{player.team}/n"
+                        "{player.position}/n"
+                        "{player.bye}/n" </td>
+                    </c:forEach>
+
                     <td id="pick2">2</td>
                     <td id="pick3">3</td>
                     <td id="pick4">4</td>
