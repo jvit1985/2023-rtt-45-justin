@@ -2,24 +2,12 @@
 
 <jsp:include page="../includes/header.jsp" />
 
-<style>
-        table {
-            background-image: url("pub/images/Updated\ football\ trophy.jpg");
-            background-repeat: repeat;
-            background-size: contain;
-            opacity: .8;
-        }
-
-        td {
-            color: black;
-        }
-    </style>
 
 <main>
         <h1 class="text-center mt-3">${player.name}</h1>
 
         <div class="profile-picture text-center">
-            <img src="pub/images/profileImage.png" alt="Team${team.id} Profile Picture" style="height: 20%; width: 20%;">
+            <img src="pub/images/profileImage.png" alt="Put iFrame with player highlights from Youtube here" style="height: 20%; width: 20%;">
         </div>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">

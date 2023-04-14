@@ -17,12 +17,7 @@
 <section>
         <div class="container">
             <form action="/team/createSubmit" style="width: 50%;">
-            <input type="hidden" name="userId" value="${form.userId}"/>
-                <div class="mb-4">
-                  <label for="id" class="form-label">Team Number</label>
-                  <input type="text" class="form-control" id="id" name="id"
-                  aria-describedby="idHelp" value="${form.id}">
-                </div>
+                <input type="hidden" name="id" value="${form.id}"/>
                 <div class="mb-4">
                     <label for="teamName" class="form-label">Team Name</label>
                     <input type="text" class="form-control" id="teamName" name="teamName"
@@ -35,10 +30,10 @@
                   </div>
 
                 <c:if test="${empty form.id}">
-                  <button type="submit" id="create_btn" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Create Team</button>
+                  <button type="submit" id="create_btn" class="btn btn-primary mt-3 me-3">Create Team</button>
                 </c:if>
                 <c:if test="${not empty form.id}">
-                  <button type="submit" id="edit_btn" class="btn btn-primary mt-3 me-3" onclick="formSubmit()">Edit Team</button>
+                  <button type="submit" id="edit_btn" class="btn btn-primary mt-3 me-3">Edit Team</button>
 
                 </c:if>
             </form>

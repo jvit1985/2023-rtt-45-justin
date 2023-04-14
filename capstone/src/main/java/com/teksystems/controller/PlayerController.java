@@ -2,13 +2,12 @@ package com.teksystems.controller;
 
 import com.teksystems.database.dao.PlayerDAO;
 import com.teksystems.database.entity.Player;
+import com.teksystems.database.entity.Team;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.teksystems.formbeans.PlayerFormBean;
 
@@ -87,6 +86,20 @@ public class PlayerController {
         response.addObject("player", player);
 
         log.debug(player + "");
+        return response;
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView playerSearch(@RequestParam(required = false) String playerSearch) {
+        log.debug("In the team search controller method with teamName = " + playerSearch);
+        ModelAndView response = new ModelAndView("player/search");
+
+        List<Player> players = playerDAO.findByNameContainingIgnoreCase(playerSearch);
+
+        response.addObject("playerList", players);
+        response.addObject("playerSearchParam", playerSearch);
+
+
         return response;
     }
 }

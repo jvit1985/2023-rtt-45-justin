@@ -2,23 +2,6 @@
 
 <jsp:include page="includes/header.jsp" />
 
-<style>
-
-body {
-        background-image: url("pub/images/Logo\ NFL.png");
-        background-repeat: none;
-        background-color: rgb(121, 22, 22);
-        color: white;
-
-    }
-
-    form {
-        font-weight: bold;
-        opacity: .9;
-    }
-
-</style>
-
 <script>
 
         function cancelClicked() {

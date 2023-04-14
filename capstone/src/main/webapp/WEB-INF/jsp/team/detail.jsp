@@ -2,18 +2,6 @@
 
 <jsp:include page="../includes/header.jsp" />
 
-<style>
-        table {
-            background-image: url("pub/images/Updated\ football\ trophy.jpg");
-            background-repeat: repeat;
-            background-size: contain;
-            opacity: .8;
-        }
-
-        td {
-            color: black;
-        }
-    </style>
 
 <main>
         <h1 class="text-center mt-3">${team.teamName}</h1>

@@ -2,39 +2,16 @@
 
 <jsp:include page="../includes/header.jsp" />
 
-<style>
-        table {
-            background-image: url("pub/images/Updated\ football\ trophy.jpg");
-            background-repeat: repeat;
-            background-size: contain;
-            opacity: .8;
-        }
-
-        td {
-            color: black;
-        }
-    </style>
-
 <main>
         <h1 class="text-center mt-3">All Teams</h1>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">
-            <thead>
+            <tbody>
                 <tr>
                 <c:forEach items="${teams}" var="team">
                 <th scope="col">${team.teamName}</th>
                 </tr>
                 </c:forEach>
-            </thead>
-            <tbody>
-              <c:forEach items="${players}" var="player">
-                <tr>
-                    <td>${player.position}</td>
-                    <td>${player.name}</td>
-                    <td>${player.team}</td>
-                    <td>${player.bye}</td>
-                </tr>
-              </c:forEach>
             </tbody>
         </table>
         </div>

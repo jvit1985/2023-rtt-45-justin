@@ -2,29 +2,24 @@
 
 <jsp:include page="includes/header.jsp" />
 
-<style>
-        table {
-            background-image: url("pub/images/FantasyDraft\ logo\ -\ 1528\ x\ 529\ TRANSPARENT\ BLACK.png");
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-
-    </style>
-
 <main>
         <h1 class="text-center mt-3">Draftboard</h1>
+        <form action="/draftboardSubmit" method="POST">
         <div class="mb-3 d-flex align-items-center justify-content-center" id="selection">
             <h3>Select Your Player</h3>
-            <select class="dropdown" id="dropdown" style="color: black;" name="playerId">
+            <label for="playerId" class="form-label"></label>
+            <select class="form-select" id="playerId" style="color: black;" name="playerId">
             <c:forEach items="${players}" var="player">
-                <option value="${player.id}">${player.name}</option>
+                <option value="${player.id}"
+                    <c:if test="${player.id eq form.playerId}">
+                        selected
+                    </c:if>
+                >${player.name}</option>
             </c:forEach>
             </select>
-            <button type="button" class="btn btn-primary ms-2" id="draft">Draft Player</button>
         </div>
             <h2 class="text-center">Fantasy Football Draft</h2>
             <div class="mx-3">
-            <form action="/draftboard" method="post">
             <input type="hidden" name="id" value="${form.id}"/>
             </div>
             <div class="mb-4">
@@ -35,16 +30,46 @@
                        <c:if test="${team.id eq form.teamId}">
                          selected
                        </c:if>
-                     >${team.name}</option>
+                     >${team.teamName}</option>
                    </c:forEach>
                  </select>
             </div>
                 <div class="mb-4">
-                  <label for="draftPick" class="form-label">Extension</label>
-                  <input type="text" class="form-control" id="extension" name="extension"
-                  aria-describedby="extensionHelp" value="${form.extension}">
+                  <label for="draftPickNumber" class="form-label">Draft Pick</label>
+                  <input type="number" class="form-control" id="draftPickNumber" name="draftPickNumber"
+                  aria-describedby="draftPickHelp" value="${form.draftPickNumber}">
 
                 </div>
+                <button type="submit" class="btn btn-primary ms-2" id="draft_btn">Draft Player</button>
+            </form>
+        <section class="py-5 bg-dark-grey">
+            <div class="container text-center">
+            <h4 class="pb-2">Draft Results</h4>
+
+            <table class="table table-striped border">
+                <thead>
+                <tr>
+                    <th scope="col">Pick Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Bye</th>
+                </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${teamPlayers}" var="players">
+                <tr>
+                    <td>${players.draft_pick_number}</td>
+                    <td><a href="/player/detail/${players.id}">${players.name}</a></td>
+                    <td>${players.position}</td>
+                    <td>${players.team}</td>
+                    <td>${players.bye}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+            </table>
+        </div>
+        </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

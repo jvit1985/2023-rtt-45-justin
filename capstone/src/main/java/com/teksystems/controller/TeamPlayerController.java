@@ -34,7 +34,8 @@ public class TeamPlayerController {
         response.addObject("teams", teams);
 
         for(int i = 0; i < teams.size(); i++) {
-            List<Map<String, Object>> players = teamPlayerDAO.findAllPlayersByTeamId(i+1);
+            Team team = teamDao.findById(i+1);
+            List<Map<String, Object>> players = teamPlayerDAO.findAllPlayersByTeamId(team.getId());
 
             response.addObject("players", players);
         }

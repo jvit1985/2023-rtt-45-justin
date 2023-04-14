@@ -9,6 +9,7 @@ import com.teksystems.database.entity.Team;
 import com.teksystems.database.entity.TeamPlayer;
 import com.teksystems.database.entity.User;
 import com.teksystems.formbeans.TeamFormBean;
+import com.teksystems.security.AuthenticatedUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -38,6 +39,9 @@ public class TeamController {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
+
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable Integer id) {
         ModelAndView response = new ModelAndView("team/detail");
@@ -53,25 +57,24 @@ public class TeamController {
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView edit(@PathVariable Integer id, TeamFormBean form, @RequestParam(required = false)MultipartFile fileUpload) throws IOException {
-        ModelAndView response = new ModelAndView("team/edit");
+    public ModelAndView edit(@PathVariable Integer id) {
+        ModelAndView response = new ModelAndView("team/create");
         log.debug("In team controller - edit method");
 
         Team team = teamDAO.findById(id);
+        TeamFormBean form = new TeamFormBean();
 
-        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
-        log.debug(target.getAbsolutePath());
-        FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
+        form.setId(team.getId());
+        form.setTeamName(team.getTeamName());
+        form.setTeamPicture(team.getTeamPicture());
 
+//        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
+//        log.debug(target.getAbsolutePath());
+//        FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
+//
+//
+//        response.addObject("fileUrl", "/pub/images/" + fileUpload.getOriginalFilename());
 
-        response.addObject("fileUrl", "/pub/images/" + fileUpload.getOriginalFilename());
-
-        team.setId(form.getId());
-        team.setTeamName(form.getTeamName());
-        team.setTeamPicture("/pub/images" + fileUpload.getOriginalFilename());
-
-
-        teamDAO.save(team);
 
         response.addObject("form", form);
 
@@ -88,12 +91,12 @@ public class TeamController {
     }
 
     @GetMapping("/createSubmit")
-    public ModelAndView createSubmit(TeamFormBean form, @RequestParam Integer userId) {
+    public ModelAndView createSubmit(TeamFormBean form) {
         ModelAndView response = new ModelAndView("team/create");
         log.debug("In team createSubmit controller method");
         log.debug(form.toString());
 
-        User user = userDAO.findById(userId);
+        User user = authenticatedUserService.loadCurrentUser();
         Team team = new Team();
 
         if (form.getId() != null && form.getId() > 0) {
@@ -102,7 +105,6 @@ public class TeamController {
 
         team.setTeamName(form.getTeamName());
         team.setTeamPicture(form.getTeamPicture());
-        team.setId(form.getId());
         team.setUser(user);
 
         teamDAO.save(team);

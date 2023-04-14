@@ -12,7 +12,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="pub/css/global.css" />
 </head>
 
 <body>
@@ -31,19 +30,16 @@
               <a class="nav-link" href="/signup">Signup</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/create-team">Create Teams</a>
+              <a class="nav-link" href="/team/create">Create Team</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/draftboard">Draftboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/team/detail/${team.id}">My Team</a>
+              <a class="nav-link" href="/team/viewAll">View Teams</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/team/viewAll">View All Teams</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/player/detail/${player.id}">Player Details</a>
+              <a class="nav-link" href="/player/search">Player Search</a>
             </li>
             <sec:authorize access="isAuthenticated()">
               <li class="nav-item">
@@ -64,8 +60,8 @@
               <li class="nav-item dropdown">
                  <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin Link</a>
                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="/team/edit/${team.id}">Edit Team</a></li>
-                    <li><a class="dropdown-item" href="/player/edit/${player.id}">Edit Player</a></li>
+                    <li><a class="dropdown-item" href="/team/search">Find Team</a></li>
+                    <li><a class="dropdown-item" href="/player/search">Find Player</a></li>
               </li>
             </sec:authorize>
 

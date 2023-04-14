@@ -5,6 +5,7 @@ import com.teksystems.database.entity.*;
 
 
 import com.teksystems.formbeans.CreateUserFormBean;
+import com.teksystems.formbeans.DraftPlayerFormBean;
 import com.teksystems.formbeans.TeamFormBean;
 import com.teksystems.security.AuthenticatedUserService;
 import jakarta.servlet.http.HttpSession;
@@ -27,6 +28,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -119,59 +121,83 @@ public class SlashController {
 
         List<Player> players = playerDAO.getAllPlayers();
         List<Team> teams = teamDAO.getAllTeams();
-        List<TeamPlayer> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
+        List<Map<String,Object>> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
         response.addObject("teams", teams);
         response.addObject("players", players);
+        response.addObject("teamPlayers", teamPlayers);
 
         return response;
     }
 
-//    @PostMapping("/draftboard")
-//    public ModelAndView draftboard(PlayerFormBean form, @RequestParam Integer teamId, @RequestParam Integer draftPickNumber) {
-//        ModelAndView response = new ModelAndView("draftboard");
+    @PostMapping("/draftboardSubmit")
+    public ModelAndView draft(@Valid DraftPlayerFormBean form, BindingResult bindingResult) {
+        ModelAndView response = new ModelAndView("draftboard");
+
+        List<Team> teams = teamDAO.getAllTeams();
+        List<Player> players = playerDAO.getAllPlayers();
+        List<Map<String,Object>> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
+        response.addObject("teams", teams);
+        response.addObject("players", players);
+        response.addObject("teamPlayers", teamPlayers);
+
+        if ( bindingResult.hasErrors()) {
+            for ( FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+            }
+
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+
+            return response;
+        }
+
+        log.debug("In draft post controller method");
+        log.debug(form.toString());
+
+        TeamPlayer teamPlayer = new TeamPlayer();
+
+        teamPlayer.setTeam(teamDAO.findById(form.getTeamId()));
+        teamPlayer.setPlayer(playerDAO.findById(form.getPlayerId()));
+        teamPlayer.setDraftPickNumber(form.getDraftPickNumber());
+
+        teamPlayerDAO.save(teamPlayer);
+
+        response.setViewName("redirect:/draftboard");
+
+        return response;
+    }
+
+
+//    @RequestMapping(value = "/create-team", method = RequestMethod.GET)
+//    public ModelAndView createTeam() {
+//        log.debug("In the create-team controller method");
+//        ModelAndView response = new ModelAndView("create-team");
+//        return response;
+//    }
 //
-//        Team team = teamDAO.findById(teamId);
-//        Player player = new Player();
-//        player.getId();
-//        player.getBye();
-//        player.getTeam();
-//        player.getPosition();
-//        player.getName();
+//    @PostMapping("/create-team")
+//    public ModelAndView createTeam(TeamFormBean form, @RequestParam Integer userId, @RequestParam(required = false) MultipartFile fileUpload) throws IOException {
+//        ModelAndView response = new ModelAndView("create-team");
+//
+//        Team team = new Team();
+//
+//        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
+//        log.debug(target.getAbsolutePath());
+//        FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
+//
+//
+//        response.addObject("fileUrl", "/pub/images/" + fileUpload.getOriginalFilename());
+//
+//        team.setId(form.getId());
+//        team.setTeamName(form.getTeamName());
+//        team.setTeamPicture("/pub/images" + fileUpload.getOriginalFilename());
+//        team.setUser(userDAO.findById(userId));
+//
+//        teamDAO.save(team);
+//
+//        response.addObject("form", form);
 //
 //        return response;
 //    }
-
-
-    @RequestMapping(value = "/create-team", method = RequestMethod.GET)
-    public ModelAndView createTeam() {
-        log.debug("In the create-team controller method");
-        ModelAndView response = new ModelAndView("create-team");
-        return response;
-    }
-
-    @PostMapping("/create-team")
-    public ModelAndView createTeam(TeamFormBean form, @RequestParam Integer userId, @RequestParam(required = false) MultipartFile fileUpload) throws IOException {
-        ModelAndView response = new ModelAndView("create-team");
-
-        Team team = new Team();
-
-        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
-        log.debug(target.getAbsolutePath());
-        FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
-
-
-        response.addObject("fileUrl", "/pub/images/" + fileUpload.getOriginalFilename());
-
-        team.setId(form.getId());
-        team.setTeamName(form.getTeamName());
-        team.setTeamPicture("/pub/images" + fileUpload.getOriginalFilename());
-        team.setUser(userDAO.findById(userId));
-
-        teamDAO.save(team);
-
-        response.addObject("form", form);
-
-        return response;
-    }
 
 }
