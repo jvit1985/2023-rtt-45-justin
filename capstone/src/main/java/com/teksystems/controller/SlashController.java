@@ -2,9 +2,12 @@ package com.teksystems.controller;
 
 import com.teksystems.database.dao.*;
 import com.teksystems.database.entity.*;
-import com.teksystems.formbeans.PlayerFormBean;
-import com.teksystems.formbeans.TeamFormBean;
+
+
 import com.teksystems.formbeans.CreateUserFormBean;
+import com.teksystems.formbeans.TeamFormBean;
+import com.teksystems.security.AuthenticatedUserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -48,6 +51,9 @@ public class SlashController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
+
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() {
         log.debug("In the index controller method");
@@ -64,7 +70,7 @@ public class SlashController {
     }
 
     @PostMapping("/signupSubmit")
-    public ModelAndView signup(@Valid CreateUserFormBean form, BindingResult bindingResult) {
+    public ModelAndView signup(@Valid CreateUserFormBean form, BindingResult bindingResult, HttpSession session) {
         ModelAndView response = new ModelAndView("signup");
         log.debug("In the signup controller post method");
 
@@ -99,6 +105,8 @@ public class SlashController {
 
         userRoleDAO.save(userRole);
 
+        authenticatedUserService.changeLoggedInUsername(session, form.getEmail(), form.getPassword());
+
         log.debug(form.toString());
 
         return response;
@@ -118,18 +126,20 @@ public class SlashController {
         return response;
     }
 
-    @PostMapping("/draftboard")
-    public ModelAndView draftboard(PlayerFormBean form, @RequestParam Integer teamId, @RequestParam Integer draftPickNumber) {
-        ModelAndView response = new ModelAndView("draftboard");
-
-        Team team = teamDAO.findById(teamId);
-        Player player = new Player();
-        player.getId();
-        player.getBye();
-        player.getTeam();
-        player.getPosition();
-        player.getName();
-    }
+//    @PostMapping("/draftboard")
+//    public ModelAndView draftboard(PlayerFormBean form, @RequestParam Integer teamId, @RequestParam Integer draftPickNumber) {
+//        ModelAndView response = new ModelAndView("draftboard");
+//
+//        Team team = teamDAO.findById(teamId);
+//        Player player = new Player();
+//        player.getId();
+//        player.getBye();
+//        player.getTeam();
+//        player.getPosition();
+//        player.getName();
+//
+//        return response;
+//    }
 
 
     @RequestMapping(value = "/create-team", method = RequestMethod.GET)

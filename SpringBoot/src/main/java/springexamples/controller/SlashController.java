@@ -1,10 +1,13 @@
 package springexamples.controller;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import springexamples.database.dao.EmployeeDAO;
@@ -14,6 +17,7 @@ import springexamples.database.entity.User;
 import springexamples.database.entity.UserRole;
 import springexamples.formbeans.CreateUserFormBean;
 import springexamples.security.AuthenticatedUserService;
+import org.springframework.validation.BindingResult;
 
 @Slf4j
 @Controller
@@ -57,10 +61,29 @@ public class SlashController {
     }
 
     @PostMapping("/signupSubmit")
-    public ModelAndView setup(CreateUserFormBean form, HttpSession session) {
+    public ModelAndView setup(@Valid CreateUserFormBean form, BindingResult bindingResult, HttpSession session) {
 
         ModelAndView response = new ModelAndView("signup");
         log.debug("In the signup controller post method");
+
+        response.addObject("form", form);
+
+        if (StringUtils.equals(form.getPassword(), form.getConfirmPassword()) == false){
+            bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
+        }
+
+        if(bindingResult.hasErrors()){
+            for ( FieldError error : bindingResult.getFieldErrors()){
+                log.debug("Validation Error on field: " + error.getField());
+
+                log.debug("Validation Error Message: " + error.getDefaultMessage());
+            }
+
+            response.addObject("bindingResult", bindingResult);
+
+            return response;
+        }
+
 
         User user = new User();
         user.setEmail(form.getEmail());
