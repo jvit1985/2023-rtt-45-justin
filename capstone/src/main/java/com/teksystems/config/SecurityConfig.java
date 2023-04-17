@@ -22,7 +22,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 // any urls you want to secure you put in request matchers separated by a comma
-                .authorizeHttpRequests().requestMatchers("/player/**", "/draftboard", "/create-teams").authenticated()
+                .authorizeHttpRequests().requestMatchers("/player/create", "/player/edit/*", "/draftboard", "/team/create", "/team/edit/*").authenticated()
                 .anyRequest().permitAll().and().formLogin().loginPage("/login/login")
                 .loginProcessingUrl("/login/loginpost")
                 .defaultSuccessUrl("/")

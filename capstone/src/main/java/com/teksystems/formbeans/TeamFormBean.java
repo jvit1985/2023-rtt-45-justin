@@ -1,5 +1,6 @@
 package com.teksystems.formbeans;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,8 +10,10 @@ import lombok.ToString;
 @ToString
 public class TeamFormBean {
 
+    @NotEmpty(message = "Team Number cannot be empty")
     private Integer id;
 
+    @NotEmpty(message = "Team name cannot be empty")
     private String teamName;
 
     private String teamPicture;

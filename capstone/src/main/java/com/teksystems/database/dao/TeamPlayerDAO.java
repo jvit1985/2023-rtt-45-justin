@@ -18,5 +18,8 @@ public interface TeamPlayerDAO extends JpaRepository<TeamPlayer, Long> {
     @Query(value = "select p.* from players p, team_players tp WHERE tp.player_id = p.id AND tp.team_id = :id ;", nativeQuery = true)
     List<Map<String,Object>> findAllPlayersByTeamId(Integer id);
 
-    TeamPlayer findByPlayerId(Integer playerId);
+    TeamPlayer findByTeamId(Integer teamId);
+
+    @Query(value = "select p.*, t.team_name, tp.team_id from players p, teams t, team_players tp where tp.player_id = p.id AND tp.team_id = t.id order by tp.team_id ;", nativeQuery = true)
+    List<Map<String, Object>> findAllPlayersForAllTeams();
 }
