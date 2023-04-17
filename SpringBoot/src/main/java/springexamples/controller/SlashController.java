@@ -94,6 +94,8 @@ public class SlashController {
 
         //will auto generate the ID and it will populate the field in the user entity
         userDAO.save(user);
+        response.addObject("form", form);
+        response.addObject("success", true);
 
         UserRole userRole = new UserRole();
         userRole.setRoleName("USER");

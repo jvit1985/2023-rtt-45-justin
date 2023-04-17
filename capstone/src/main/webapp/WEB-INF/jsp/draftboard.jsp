@@ -17,11 +17,21 @@
                 >${player.name}</option>
             </c:forEach>
             </select>
+            <c:if test="${bindingResult.hasFieldErrors('playerId')}">
+                                <c:forEach items="${bindingResult.getFieldErrors('playerId')}" var="error">
+                                    <div style="color:red">${error.getDefaultMessage()}</div>
+                                </c:forEach>
+                              </c:if>
         </div>
             <h2 class="text-center">Fantasy Football Draft</h2>
             <div class="mx-3">
             <input type="hidden" name="id" value="${form.id}"/>
             </div>
+             <c:if test="${success}">
+                            <div class="alert alert-success" role="alert">
+                                Draft Pick Created
+                            </div>
+                        </c:if>
             <div class="mb-4">
                <label for="teamId" class="form-label">Team</label>
                  <select class="form-select" id="teamId" name="teamId">
@@ -33,12 +43,21 @@
                      >${team.teamName}</option>
                    </c:forEach>
                  </select>
+                 <c:if test="${bindingResult.hasFieldErrors('teamId')}">
+                                     <c:forEach items="${bindingResult.getFieldErrors('teamId')}" var="error">
+                                         <div style="color:red">${error.getDefaultMessage()}</div>
+                                     </c:forEach>
+                                   </c:if>
             </div>
                 <div class="mb-4">
                   <label for="draftPickNumber" class="form-label">Draft Pick</label>
                   <input type="number" class="form-control" id="draftPickNumber" name="draftPickNumber"
                   aria-describedby="draftPickHelp" value="${form.draftPickNumber}">
-
+            <c:if test="${bindingResult.hasFieldErrors('draftPickNumber')}">
+                                <c:forEach items="${bindingResult.getFieldErrors('draftPickNumber')}" var="error">
+                                    <div style="color:red">${error.getDefaultMessage()}</div>
+                                </c:forEach>
+                              </c:if>
                 </div>
                 <button type="submit" class="btn btn-primary ms-2" id="draft_btn">Draft Player</button>
             </form>

@@ -1,6 +1,8 @@
 package com.teksystems.formbeans;
 
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -11,13 +13,13 @@ public class DraftPlayerFormBean {
 
     private Integer id;
 
-    @NotEmpty(message = "Team is required")
+    @NotNull(message = "Team cannot be empty")
     private Integer teamId;
 
-    @NotEmpty(message = "Player is required")
+    @NotNull(message = "Player cannot be empty")
     private Integer playerId;
 
-    @NotEmpty(message = "Draft Pick Number is required")
+    @NotNull(message = "Draft Pick cannot be empty")
     private Integer draftPickNumber;
 
 }

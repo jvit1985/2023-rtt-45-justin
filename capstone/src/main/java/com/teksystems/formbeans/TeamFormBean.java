@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class TeamFormBean {
 
-    @NotEmpty(message = "Team Number cannot be empty")
+    @NotEmpty(message = "Team number cannot be empty")
     private Integer id;
 
     @NotEmpty(message = "Team name cannot be empty")

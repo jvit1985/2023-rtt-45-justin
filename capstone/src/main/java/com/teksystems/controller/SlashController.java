@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -76,12 +77,18 @@ public class SlashController {
         ModelAndView response = new ModelAndView("signup");
         log.debug("In the signup controller post method");
 
+        response.addObject("form", form);
+
+        if (StringUtils.equals(form.getPassword(), form.getConfirmPassword()) == false) {
+            bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
+        }
+
         if(bindingResult.hasErrors()) {
             for (FieldError error: bindingResult.getFieldErrors()) {
                 log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
             }
 
-            response.addObject("form", form);
+
             response.addObject("bindingResult", bindingResult);
 
             return response;
@@ -166,38 +173,5 @@ public class SlashController {
 
         return response;
     }
-
-
-//    @RequestMapping(value = "/create-team", method = RequestMethod.GET)
-//    public ModelAndView createTeam() {
-//        log.debug("In the create-team controller method");
-//        ModelAndView response = new ModelAndView("create-team");
-//        return response;
-//    }
-//
-//    @PostMapping("/create-team")
-//    public ModelAndView createTeam(TeamFormBean form, @RequestParam Integer userId, @RequestParam(required = false) MultipartFile fileUpload) throws IOException {
-//        ModelAndView response = new ModelAndView("create-team");
-//
-//        Team team = new Team();
-//
-//        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
-//        log.debug(target.getAbsolutePath());
-//        FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
-//
-//
-//        response.addObject("fileUrl", "/pub/images/" + fileUpload.getOriginalFilename());
-//
-//        team.setId(form.getId());
-//        team.setTeamName(form.getTeamName());
-//        team.setTeamPicture("/pub/images" + fileUpload.getOriginalFilename());
-//        team.setUser(userDAO.findById(userId));
-//
-//        teamDAO.save(team);
-//
-//        response.addObject("form", form);
-//
-//        return response;
-//    }
 
 }

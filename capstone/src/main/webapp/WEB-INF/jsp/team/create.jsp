@@ -17,11 +17,21 @@
 <section>
         <div class="container">
             <form action="/team/createSubmit" style="width: 50%;">
+            <c:if test="${success}">
+                            <div class="alert alert-success" role="alert">
+                                Team Created
+                            </div>
+                        </c:if>
                 <input type="hidden" name="id" value="${form.id}"/>
                 <div class="mb-4">
                     <label for="teamName" class="form-label">Team Name</label>
                     <input type="text" class="form-control" id="teamName" name="teamName"
                     aria-describedby="teamNameHelp" value="${form.teamName}">
+                    <c:if test="${bindingResult.hasFieldErrors('teamName')}">
+                                        <c:forEach items="${bindingResult.getFieldErrors('teamName')}" var="error">
+                                            <div style="color:red">${error.getDefaultMessage()}</div>
+                                        </c:forEach>
+                                      </c:if>
                   </div>
                   <div class="mb-4">
                     <label for="teamPicture" class="form-label">Team Picture</label>

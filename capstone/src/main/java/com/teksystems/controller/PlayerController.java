@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.teksystems.formbeans.PlayerFormBean;
@@ -52,10 +54,21 @@ public class PlayerController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/createSubmit")
-    public ModelAndView createSubmit(PlayerFormBean form) {
+    public ModelAndView createSubmit(PlayerFormBean form, BindingResult bindingResult) {
         ModelAndView response = new ModelAndView("player/create");
         log.debug("In player createSubmit controller method");
         log.debug(form.toString());
+
+        if ( bindingResult.hasErrors() ) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+            }
+
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+
+            return response;
+        }
 
         Player player = new Player();
 
@@ -70,6 +83,7 @@ public class PlayerController {
 
         playerDAO.save(player);
         response.addObject("form", form);
+        response.addObject("success", true);
 
         response.setViewName("redirect:/player/edit/" + player.getId());
 

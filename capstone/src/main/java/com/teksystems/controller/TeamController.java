@@ -15,6 +15,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -91,10 +93,21 @@ public class TeamController {
     }
 
     @GetMapping("/createSubmit")
-    public ModelAndView createSubmit(TeamFormBean form) {
+    public ModelAndView createSubmit(TeamFormBean form, BindingResult bindingResult) {
         ModelAndView response = new ModelAndView("team/create");
         log.debug("In team createSubmit controller method");
         log.debug(form.toString());
+
+        if (bindingResult.hasErrors()) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+            }
+
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+
+            return response;
+        }
 
         User user = authenticatedUserService.loadCurrentUser();
         Team team = new Team();
@@ -109,6 +122,7 @@ public class TeamController {
 
         teamDAO.save(team);
         response.addObject("form", form);
+        response.addObject("success", true);
 
         return response;
     }

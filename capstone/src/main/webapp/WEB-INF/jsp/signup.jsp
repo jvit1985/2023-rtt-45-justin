@@ -69,6 +69,19 @@
                  User Created
               </div>
             </c:if>
+    <c:if test="${bindingResult.hasFieldErrors()}">
+        <section class="pt-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-10 col-md-7 col-xl-5">
+                        <c:forEach items="${bindingResult.getFieldErrors()}" var="error">
+                            <div style="color:red;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </c:if>
 
                 <div class="mb-3" style="width: 50%;">
                   <label for="exampleInputEmail" class="form-label">Email address</label>

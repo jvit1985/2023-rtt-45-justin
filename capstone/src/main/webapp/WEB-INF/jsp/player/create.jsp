@@ -17,11 +17,21 @@
 <section>
         <div class="container">
             <form action="/player/createSubmit" style="width: 50%;">
+            <c:if test="${success}">
+                            <div class="alert alert-success" role="alert">
+                                Player Created
+                            </div>
+                        </c:if>
             <input type="hidden" name="id" value="${form.id}"/>
                 <div class="mb-4">
                   <label for="playerName" class="form-label">Player Name</label>
                   <input type="text" class="form-control" id="name" name="name"
                   aria-describedby="playerNameHelp" value="${form.name}">
+                  <c:if test="${bindingResult.hasFieldErrors('name')}">
+                                      <c:forEach items="${bindingResult.getFieldErrors('name')}" var="error">
+                                          <div style="color:red">${error.getDefaultMessage()}</div>
+                                      </c:forEach>
+                                    </c:if>
                 </div>
                 <div class="mb-4">
                     <label for="team" class="form-label">Team</label>
@@ -32,6 +42,11 @@
                     <label for="position" class="form-label">Position</label>
                     <input type="text" class="form-control" id="position" name="position"
                     aria-describedby="positionHelp" value="${form.position}">
+                    <c:if test="${bindingResult.hasFieldErrors('position')}">
+                                        <c:forEach items="${bindingResult.getFieldErrors('position')}" var="error">
+                                            <div style="color:red">${error.getDefaultMessage()}</div>
+                                        </c:forEach>
+                                      </c:if>
                   </div>
 
                 <div class="mb-4">
