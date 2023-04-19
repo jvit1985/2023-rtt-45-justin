@@ -3,6 +3,8 @@ package com.teksystems.controller;
 import com.teksystems.database.dao.PlayerDAO;
 import com.teksystems.database.entity.Player;
 import com.teksystems.database.entity.Team;
+import com.teksystems.database.entity.User;
+import com.teksystems.formbeans.TeamFormBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -59,7 +61,7 @@ public class PlayerController {
         log.debug("In player createSubmit controller method");
         log.debug(form.toString());
 
-        if ( bindingResult.hasErrors() ) {
+        if (bindingResult.hasErrors()) {
             for (FieldError error : bindingResult.getFieldErrors()) {
                 log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
             }
@@ -72,23 +74,22 @@ public class PlayerController {
 
         Player player = new Player();
 
-        if(form.getId() != null && form.getId() >= 0) {
+        if (form.getId() != null && form.getId() > 0) {
             player = playerDAO.findById(form.getId());
         }
 
         player.setName(form.getName());
-        player.setTeam(form.getTeam());
         player.setPosition(form.getPosition());
+        player.setTeam(form.getTeam());
         player.setBye(form.getBye());
 
         playerDAO.save(player);
         response.addObject("form", form);
         response.addObject("success", true);
 
-        response.setViewName("redirect:/player/edit/" + player.getId());
+        form.setId(player.getId());
 
         return response;
-
     }
 
     @GetMapping("/detail/{id}")

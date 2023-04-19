@@ -2,7 +2,7 @@
 
 <jsp:include page="../includes/header.jsp" />
 
-<section class="py-5 bg-dark-grey">
+<section class="py-5">
     <div class="container text-center">
     <c:if test="${empty form.id}">
         <h1>Create Team</h1>
@@ -16,6 +16,8 @@
 
 <section>
         <div class="container">
+          <div class="row justify-content-center">
+            
             <form action="/team/createSubmit" style="width: 50%;">
             <c:if test="${success}">
                             <div class="alert alert-success" role="alert">
@@ -23,13 +25,13 @@
                             </div>
                         </c:if>
                 <input type="hidden" name="id" value="${form.id}"/>
-                <div class="mb-4">
+                <div class="mb-4 align-content-center">
                     <label for="teamName" class="form-label">Team Name</label>
                     <input type="text" class="form-control" id="teamName" name="teamName"
                     aria-describedby="teamNameHelp" value="${form.teamName}">
                     <c:if test="${bindingResult.hasFieldErrors('teamName')}">
                                         <c:forEach items="${bindingResult.getFieldErrors('teamName')}" var="error">
-                                            <div style="color:red">${error.getDefaultMessage()}</div>
+                                            <div style="color:white">${error.getDefaultMessage()}</div>
                                         </c:forEach>
                                       </c:if>
                   </div>
@@ -48,6 +50,13 @@
                 </c:if>
             </form>
         </div>
+        
+        </div>
+        <div class=" pt-5 text-center create-team-image">
+          
+            <img src="../../../pub/images/The League.jpg" alt="The League Picture" style="height: 40%; width: 40%;">
+        </div>
+        
     </section>
 
 <jsp:include page="../includes/footer.jsp" />

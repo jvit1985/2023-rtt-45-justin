@@ -1,6 +1,7 @@
 package com.teksystems.formbeans;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class PlayerFormBean {
 
-    @NotEmpty(message = "Player Id is required")
+    @NotNull(message = "Player Id is required")
     private Integer id;
 
     @NotEmpty(message = "Player name is required")

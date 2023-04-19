@@ -4,11 +4,11 @@
 
 <main>
         <h1 class="text-center mt-3">Draftboard</h1>
+        
         <form action="/draftboardSubmit" method="POST">
-        <div class="mb-3 d-flex align-items-center justify-content-center" id="selection">
-            <h3>Select Your Player</h3>
-            <label for="playerId" class="form-label"></label>
-            <select class="form-select" id="playerId" style="color: black;" name="playerId">
+        <div class="mb-3 pr-5 d-flex align-items-right justify-content-center" id="selection">
+            <label for="playerId" class="form-label mx-2">Select Your Player</label>
+            <select class="form-select" id="playerId" style="width:50%" name="playerId">
             <c:forEach items="${players}" var="player">
                 <option value="${player.id}"
                     <c:if test="${player.id eq form.playerId}">
@@ -19,11 +19,10 @@
             </select>
             <c:if test="${bindingResult.hasFieldErrors('playerId')}">
                                 <c:forEach items="${bindingResult.getFieldErrors('playerId')}" var="error">
-                                    <div style="color:red">${error.getDefaultMessage()}</div>
+                                    <div style="color:white">${error.getDefaultMessage()}</div>
                                 </c:forEach>
                               </c:if>
         </div>
-            <h2 class="text-center">Fantasy Football Draft</h2>
             <div class="mx-3">
             <input type="hidden" name="id" value="${form.id}"/>
             </div>
@@ -32,9 +31,9 @@
                                 Draft Pick Created
                             </div>
                         </c:if>
-            <div class="mb-4">
-               <label for="teamId" class="form-label">Team</label>
-                 <select class="form-select" id="teamId" name="teamId">
+            <div class="mb-4 pr-5 d-flex align-items-right justify-content-center">
+               <label for="teamId" class="form-label mx-3">Select Your Team</label>
+                 <select class="form-select" style="width:50%" id="teamId" name="teamId">
                    <c:forEach items="${teams}" var="team">
                      <option value="${team.id}"
                        <c:if test="${team.id eq form.teamId}">
@@ -45,21 +44,23 @@
                  </select>
                  <c:if test="${bindingResult.hasFieldErrors('teamId')}">
                                      <c:forEach items="${bindingResult.getFieldErrors('teamId')}" var="error">
-                                         <div style="color:red">${error.getDefaultMessage()}</div>
+                                         <div style="color:white">${error.getDefaultMessage()}</div>
                                      </c:forEach>
                                    </c:if>
             </div>
-                <div class="mb-4">
-                  <label for="draftPickNumber" class="form-label">Draft Pick</label>
-                  <input type="number" class="form-control" id="draftPickNumber" name="draftPickNumber"
+                <div class="mb-4 pr-5 d-flex align-items-right justify-content-center">
+                  <label for="draftPickNumber" class="form-label mx-3">Select Draft Pick</label>
+                  <input type="number" class="form-control" style="width:50%" id="draftPickNumber" name="draftPickNumber"
                   aria-describedby="draftPickHelp" value="${form.draftPickNumber}">
             <c:if test="${bindingResult.hasFieldErrors('draftPickNumber')}">
                                 <c:forEach items="${bindingResult.getFieldErrors('draftPickNumber')}" var="error">
-                                    <div style="color:red">${error.getDefaultMessage()}</div>
+                                    <div style="color:white">${error.getDefaultMessage()}</div>
                                 </c:forEach>
                               </c:if>
                 </div>
-                <button type="submit" class="btn btn-primary ms-2" id="draft_btn">Draft Player</button>
+                <div class="text-center">
+                    <button type="submit" class="mb-3 btn btn-primary" id="draft_btn">Draft Player</button>
+                </div>
             </form>
         <section class="py-5 bg-dark-grey">
             <div class="container text-center">

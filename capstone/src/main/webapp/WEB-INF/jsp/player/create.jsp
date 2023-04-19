@@ -29,7 +29,7 @@
                   aria-describedby="playerNameHelp" value="${form.name}">
                   <c:if test="${bindingResult.hasFieldErrors('name')}">
                                       <c:forEach items="${bindingResult.getFieldErrors('name')}" var="error">
-                                          <div style="color:red">${error.getDefaultMessage()}</div>
+                                          <div style="color:white">${error.getDefaultMessage()}</div>
                                       </c:forEach>
                                     </c:if>
                 </div>
@@ -44,7 +44,7 @@
                     aria-describedby="positionHelp" value="${form.position}">
                     <c:if test="${bindingResult.hasFieldErrors('position')}">
                                         <c:forEach items="${bindingResult.getFieldErrors('position')}" var="error">
-                                            <div style="color:red">${error.getDefaultMessage()}</div>
+                                            <div style="color:white">${error.getDefaultMessage()}</div>
                                         </c:forEach>
                                       </c:if>
                   </div>

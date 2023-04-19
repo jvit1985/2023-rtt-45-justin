@@ -1,6 +1,6 @@
-<section class="py-5 bg-dark-grey">
+<section class="py-5">
     <div class="container">
-
+    <p>Footer</p>
     </div>
 </section>
 

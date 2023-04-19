@@ -6,7 +6,8 @@
 <main>
         <h1 class="text-center mt-3">${team.teamName}</h1>
         <div class="profile-picture text-center">
-            <img src="${team.teamPicture}" alt="Team ${team.id} Profile Picture" style="height: 20%; width: 20%;">
+            <img src="../../../pub/images/profileImage.png" alt="Team ${team.id} Profile Picture" style="height: 20%; width: 20%;">
+            <!-- "${team.teamPicture}" -->
         </div>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">
@@ -22,13 +23,16 @@
               <c:forEach items="${players}" var="player">
                 <tr>
                     <td>${player.position}</td>
-                    <td>${player.name}</td>
+                    <td><a href="/player/detail/${player.id}">${player.name}</a></td>
                     <td>${player.team}</td>
                     <td>${player.bye}</td>
                 </tr>
               </c:forEach>
             </tbody>
         </table>
+        </div>
+        <div class="text-center view-teams-image">
+            <img src="../../../pub/images/Updated football trophy.jpg" alt="Fantasy Football Trophy" style="height: 60%; width: 60%;">
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

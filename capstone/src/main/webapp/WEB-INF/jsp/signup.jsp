@@ -61,7 +61,9 @@
     </script>
     <section>
         <h1 class="text-center">Signup</h1>
-        <div class="container">
+        <div class="container align-content-start">
+          <div class="row justify-content-center">
+            
         <h3 class="justify-content-start">New User Form</h3>
             <form action="/signupSubmit" method="post">
             <c:if test="${success}">
@@ -75,13 +77,14 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-10 col-md-7 col-xl-5">
                         <c:forEach items="${bindingResult.getFieldErrors()}" var="error">
-                            <div style="color:red;">${error.getDefaultMessage()}</div>
+                            <div style="color:white;">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
             </div>
         </section>
     </c:if>
+    
 
                 <div class="mb-3" style="width: 50%;">
                   <label for="exampleInputEmail" class="form-label">Email address</label>
@@ -113,7 +116,7 @@
                 <div class="mb-3" style="width: 50%;">
                   <label for="password" class="form-label">Password</label>
                   <input type="password" class="form-control" name="password" id="password" aria-describedby="PasswordHelp">
-                  <div id="passwordHelp" class="form-text" style="font-weight: bolder; color: white;">Password must be 8 characters long and contain 1 Uppercase, 1 lowercase, and 1 number</div>
+                  <div id="passwordHelp" class="form-text">Password must be 8 characters long and contain 1 Uppercase, 1 lowercase, and 1 number</div>
                   <c:if test="${bindingResult.hasFieldErrors('password')}">
                     <c:forEach items="${bindingResult.getFieldErrors('password')}" var="error">
                         <div style="color:white">${error.getDefaultMessage()}</div>
@@ -123,7 +126,7 @@
                 <div class="mb-3" style="width: 50%;">
                     <label for="confirmPassword" class="form-label">Confirm Password</label>
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" aria-describedby="ConfirmPasswordHelp">
-                    <div id="confirmPasswordHelp" class="form-text" style="font-weight: bolder; color:white;">Please re-enter your password</div>
+                    <div id="confirmPasswordHelp" class="form-text">Please re-enter your password</div>
                   <c:if test="${bindingResult.hasFieldErrors('confirmPassword')}">
                     <c:forEach items="${bindingResult.getFieldErrors('confirmPassword')}" var="error">
                         <div style="color:white">${error.getDefaultMessage()}</div>
@@ -131,9 +134,12 @@
                   </c:if>
                   </div>
 
-                <button type="submit" class="btn btn-primary mt-3" id="signup-submit">Submit</button>
+                <button type="submit" class="btn btn-primary mt-3" id="signup-submit">Signup</button>
 
               </form>
+              
+              </div>
+              
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

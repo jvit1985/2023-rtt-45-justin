@@ -8,7 +8,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-light-grey">
+<section class="my-5">
     <div class="container">
     <div class="row text-center justify-content-center">
     <div class="col-7">
@@ -17,7 +17,7 @@
               <input type="text" class="form-control" name="playerSearch" placeholder="Player Name"
               aria-label="Player Name" aria-describedby="playerSearch" value="${playerSearchParam}">
 
-              <button class="btn btn-outline-secondary" id="search">Search</button>
+              <button class="btn btn-primary" id="search">Search</button>
             </div>
         </form>
         </div>
@@ -25,7 +25,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-dark-grey">
+<section class="py-5">
     <div class="container text-center">
 
       <h4 class="pb-2">${playerList.size()} Search Results</h4>

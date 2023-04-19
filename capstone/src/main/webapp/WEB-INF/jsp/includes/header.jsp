@@ -12,11 +12,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
+<link href="../../pub/css/global.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid" style="box-shadow: 2px 2px 5px 1px rgba(255,0,0,0.2);">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid"">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -61,7 +62,7 @@
                  <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin Link</a>
                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li><a class="dropdown-item" href="/team/search">Find Team</a></li>
-                    <li><a class="dropdown-item" href="/player/search">Find Player</a></li>
+                    <li><a class="dropdown-item" href="/player/create">Create Player</a></li>
               </li>
             </sec:authorize>
 

@@ -6,8 +6,8 @@
 <main>
         <h1 class="text-center mt-3">${player.name}</h1>
 
-        <div class="profile-picture text-center">
-            <img src="pub/images/profileImage.png" alt="Put iFrame with player highlights from Youtube here" style="height: 20%; width: 20%;">
+        <div class="player-highlights text-center">
+            <img src="../../../pub/images/professional picture.jpg" alt="Put iFrame with player highlights from Youtube here" style="height: 20%; width: 20%;">
         </div>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">
@@ -20,6 +20,10 @@
                 <tr>
                     <th scope="row">Name</th>
                     <td>${player.name}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Position</th>
+                    <td>${player.position}</td>
                 </tr>
                 <tr>
                     <th scope="row">Team</th>

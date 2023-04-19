@@ -8,7 +8,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-light-grey">
+<section class="my-5">
     <div class="container">
     <div class="row text-center justify-content-center">
     <div class="col-7">
@@ -17,7 +17,7 @@
               <input type="text" class="form-control" name="teamSearch" placeholder="Team Name"
               aria-label="Team Name" aria-describedby="teamSearch" value="${teamSearchParam}">
 
-              <button class="btn btn-outline-secondary" id="search">Search</button>
+              <button class="btn btn-primary" id="search">Search</button>
             </div>
         </form>
         </div>
@@ -25,7 +25,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-dark-grey">
+<section class="py-5">
     <div class="container text-center">
 
       <h4 class="pb-2">${teamList.size()} Search Results</h4>
@@ -44,7 +44,7 @@
                 <tr>
                     <td><a href="/team/detail/${team.id}">${team.id}</a></td>
                     <td>${team.teamName}</td>
-                    <td>${user.email}</td>
+                    <td>${team.user.email}</td>
                     <td><a href="/team/edit/${team.id}">Edit</a></td>
                 </tr>
               </c:forEach>
