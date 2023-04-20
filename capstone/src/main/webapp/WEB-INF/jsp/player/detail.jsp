@@ -9,6 +9,7 @@
         <div class="player-highlights text-center">
             <img src="../../../pub/images/professional picture.jpg" alt="Put iFrame with player highlights from Youtube here" style="height: 20%; width: 20%;">
         </div>
+        <iFrame src="" height="360" width="640"></iFrame>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">
 

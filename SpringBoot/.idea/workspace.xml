@@ -6,17 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b2e52023-9cb2-46d5-a10f-ad1c63821173" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/PlayerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/formbeans/PlayerFormBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/formbeans/PlayerFormBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/SlashController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/controller/SlashController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/dao/PlayerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/java/com/teksystems/database/dao/PlayerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/draftboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/draftboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/includes/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/includes/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/includes/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/player/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/player/search.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/signup.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/team/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/team/create.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/team/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/team/search.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/pub/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/pub/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/player/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../capstone/src/main/webapp/WEB-INF/jsp/player/detail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -126,7 +126,7 @@ public class SlashController {
         ModelAndView response = new ModelAndView("draftboard");
         log.debug("In the draftboard controller method");
 
-        List<Player> players = playerDAO.getAllPlayers();
+        List<Player> players = playerDAO.getAllUndraftedPlayers();
         List<Team> teams = teamDAO.getAllTeams();
         List<Map<String,Object>> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
         response.addObject("teams", teams);
@@ -141,7 +141,7 @@ public class SlashController {
         ModelAndView response = new ModelAndView("draftboard");
 
         List<Team> teams = teamDAO.getAllTeams();
-        List<Player> players = playerDAO.getAllPlayers();
+        List<Player> players = playerDAO.getAllUndraftedPlayers();
         List<Map<String,Object>> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
         response.addObject("teams", teams);
         response.addObject("players", players);
