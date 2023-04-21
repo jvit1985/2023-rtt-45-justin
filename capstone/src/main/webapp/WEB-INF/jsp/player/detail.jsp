@@ -4,12 +4,14 @@
 
 
 <main>
-        <h1 class="text-center mt-3">${player.name}</h1>
+        <h1 class="text-center mt-3" id="playerName" value="${player.name}">${player.name}</h1>
 
-        <div class="player-highlights text-center">
-            <img src="../../../pub/images/professional picture.jpg" alt="Put iFrame with player highlights from Youtube here" style="height: 20%; width: 20%;">
+        <div class="text-center">
+        <iframe src="" height="360" width="640"></iframe>
         </div>
-        <iFrame src="" height="360" width="640"></iFrame>
+        <div class="text-center">
+        <button type="button" class="btn btn-primary" id="highlight">Play Highlights</button>
+        </div>
         <div class="mx-5 mt-3">
         <table class="table table-striped table-bordered">
 
@@ -41,6 +43,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="./assets/script.js"></script>
+    <script src="../../../pub/js/script.js"></script>
 
 <jsp:include page="../includes/footer.jsp" />

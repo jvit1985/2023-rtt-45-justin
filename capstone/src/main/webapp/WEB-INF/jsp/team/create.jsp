@@ -18,7 +18,7 @@
         <div class="container">
           <div class="row justify-content-center">
             
-            <form action="/team/createSubmit" style="width: 50%;">
+            <form action="/team/createSubmit" method="post" enctype="multipart/form-data" style="width: 50%;">
             <c:if test="${success}">
                             <div class="alert alert-success" role="alert">
                                 Team Created
@@ -37,8 +37,8 @@
                   </div>
                   <div class="mb-4">
                     <label for="teamPicture" class="form-label">Team Picture</label>
-                    <input type="file" class="form-control" id="teamPicture" name="teamPicture"
-                    aria-describedby="teamPictureHelp" value="${form.teamPicture}">
+                    <input type="file" class="form-control" id="fileUpload" name="fileUpload"
+                    aria-describedby="teamPictureHelp" value="$(form.teamPicture)">
                   </div>
 
                 <c:if test="${empty form.id}">

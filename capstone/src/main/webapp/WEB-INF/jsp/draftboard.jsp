@@ -26,11 +26,6 @@
             <div class="mx-3">
             <input type="hidden" name="id" value="${form.id}"/>
             </div>
-             <c:if test="${success}">
-                            <div class="alert alert-success" role="alert">
-                                Draft Pick Created
-                            </div>
-                        </c:if>
             <div class="mb-4 pr-5 d-flex align-items-right justify-content-center">
                <label for="teamId" class="form-label mx-3">Select Your Team</label>
                  <select class="form-select" style="width:50%" id="teamId" name="teamId">

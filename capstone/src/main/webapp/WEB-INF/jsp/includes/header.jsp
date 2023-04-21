@@ -18,7 +18,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid"">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="/index">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,9 +27,11 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/index">Home</a>
             </li>
+            <sec:authorize access="!isAuthenticated()">
             <li class="nav-item">
               <a class="nav-link" href="/signup">Signup</a>
             </li>
+            </sec:authorize>
             <li class="nav-item">
               <a class="nav-link" href="/team/create">Create Team</a>
             </li>

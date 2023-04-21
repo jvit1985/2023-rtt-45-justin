@@ -104,7 +104,7 @@ public class PlayerController {
         return response;
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @GetMapping("/search")
     public ModelAndView playerSearch(@RequestParam(required = false) String playerSearch) {
         log.debug("In the team search controller method with teamName = " + playerSearch);
         ModelAndView response = new ModelAndView("player/search");

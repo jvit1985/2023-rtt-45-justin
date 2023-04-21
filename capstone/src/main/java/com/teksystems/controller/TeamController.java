@@ -10,6 +10,7 @@ import com.teksystems.database.entity.TeamPlayer;
 import com.teksystems.database.entity.User;
 import com.teksystems.formbeans.TeamFormBean;
 import com.teksystems.security.AuthenticatedUserService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -69,6 +71,7 @@ public class TeamController {
         form.setId(team.getId());
         form.setTeamName(team.getTeamName());
         form.setTeamPicture(team.getTeamPicture());
+        
 
 //        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
 //        log.debug(target.getAbsolutePath());
@@ -92,11 +95,15 @@ public class TeamController {
         return response;
     }
 
-    @GetMapping("/createSubmit")
-    public ModelAndView createSubmit(TeamFormBean form, BindingResult bindingResult) {
+    @PostMapping("/createSubmit")
+    public ModelAndView createSubmit(@Valid TeamFormBean form, BindingResult bindingResult, @RequestParam(required = false) MultipartFile fileUpload) throws IOException {
         ModelAndView response = new ModelAndView("team/create");
         log.debug("In team createSubmit controller method");
         log.debug(form.toString());
+
+//        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
+//        log.debug(target.getAbsolutePath());
+//        FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
 
         if (bindingResult.hasErrors()) {
             for (FieldError error : bindingResult.getFieldErrors()) {
@@ -116,8 +123,17 @@ public class TeamController {
             team = teamDAO.findById(form.getId());
         }
 
+        if(fileUpload.isEmpty()) {
+            team.setTeamPicture("../../../pub/images/default.png");
+        } else {
+            File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
+            log.debug(target.getAbsolutePath());
+            FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
+            team.setTeamPicture("../../../pub/images/" + fileUpload.getOriginalFilename());
+        }
+
         team.setTeamName(form.getTeamName());
-        team.setTeamPicture(form.getTeamPicture());
+//        team.setTeamPicture("../../../pub/images/" + fileUpload.getOriginalFilename());
         team.setUser(user);
 
         teamDAO.save(team);

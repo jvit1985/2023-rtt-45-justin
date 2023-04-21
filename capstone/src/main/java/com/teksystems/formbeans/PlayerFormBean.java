@@ -11,7 +11,6 @@ import lombok.ToString;
 @ToString
 public class PlayerFormBean {
 
-    @NotNull(message = "Player Id is required")
     private Integer id;
 
     @NotEmpty(message = "Player name is required")
