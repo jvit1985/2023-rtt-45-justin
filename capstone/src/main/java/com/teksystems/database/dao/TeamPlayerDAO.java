@@ -13,7 +13,7 @@ public interface TeamPlayerDAO extends JpaRepository<TeamPlayer, Long> {
     @Query(value = "select p.*, tp.draft_pick_number from players p, team_players tp where p.id = tp.player_id;", nativeQuery = true)
     List<Map<String, Object>> getAllTeamPlayers();
 
-    TeamPlayer findById(Integer id);
+    TeamPlayer findByDraftPickNumber(Integer id);
 
     @Query(value = "select p.* from players p, team_players tp WHERE tp.player_id = p.id AND tp.team_id = :id ;", nativeQuery = true)
     List<Map<String,Object>> findAllPlayersByTeamId(Integer id);

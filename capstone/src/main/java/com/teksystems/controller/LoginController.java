@@ -11,8 +11,8 @@ public class LoginController {
 
     @GetMapping("/login/login")
     public ModelAndView setup() {
-        log.debug("In the login controller method");
         ModelAndView response = new ModelAndView("login/login");
+        log.debug("In the login controller method");
 
         return response;
     }

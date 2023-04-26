@@ -1,4 +1,4 @@
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../includes/header.jsp" />
 
 <section class="py-5 bg-dark-grey">
@@ -28,14 +28,14 @@
                 <form action="/login/loginpost" method="POST">
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" name="username"  class="form-control">
+                        <input type="text" name="username"  class="form-control">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
                         <input type="password" name="password"  class="form-control">
                     </div>
 
-                    <button type="submit" id="create-btn" class="btn btn-primary mt-3 me-3">Login</button>
+                    <button type="submit" id="create_btn" class="btn btn-primary mt-3 me-3">Login</button>
                 </form>
             </div>
         </div>

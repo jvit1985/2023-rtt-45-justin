@@ -71,14 +71,6 @@ public class TeamController {
         form.setId(team.getId());
         form.setTeamName(team.getTeamName());
         form.setTeamPicture(team.getTeamPicture());
-        
-
-//        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
-//        log.debug(target.getAbsolutePath());
-//        FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
-//
-//
-//        response.addObject("fileUrl", "/pub/images/" + fileUpload.getOriginalFilename());
 
 
         response.addObject("form", form);
@@ -133,7 +125,6 @@ public class TeamController {
         }
 
         team.setTeamName(form.getTeamName());
-//        team.setTeamPicture("../../../pub/images/" + fileUpload.getOriginalFilename());
         team.setUser(user);
 
         teamDAO.save(team);

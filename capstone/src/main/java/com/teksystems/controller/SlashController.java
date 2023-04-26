@@ -36,6 +36,11 @@ import java.util.Map;
 @RequestMapping(value = {"/index", "/", "/index.html"}, method = RequestMethod.GET)
 public class SlashController {
 
+    private static int count = 1;
+    private static int teamId = 1;
+
+    private boolean countUp = true;
+
     @Autowired
     private TeamPlayerDAO teamPlayerDAO;
 
@@ -163,11 +168,31 @@ public class SlashController {
 
         TeamPlayer teamPlayer = new TeamPlayer();
 
-        teamPlayer.setTeam(teamDAO.findById(form.getTeamId()));
+        teamPlayer.setTeam(teamDAO.findById(teamId));
         teamPlayer.setPlayer(playerDAO.findById(form.getPlayerId()));
-        teamPlayer.setDraftPickNumber(form.getDraftPickNumber());
+        teamPlayer.setDraftPickNumber(count);
 
         teamPlayerDAO.save(teamPlayer);
+
+        if (countUp) {
+            if (teamId < 12) {
+                teamId++;
+            } else {
+                countUp = false;
+                teamId = 12;
+            }
+        } else {
+            if (teamId > 1) {
+                teamId--;
+            } else {
+                countUp = true;
+                teamId = 1;
+            }
+        }
+        count++;
+
+        System.out.println(teamId);
+        System.out.println(count);
 
         response.setViewName("redirect:/draftboard");
 
