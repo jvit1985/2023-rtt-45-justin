@@ -1,8 +1,5 @@
 # Final Capstone
   
-  ![GitHub license](https://img.shields.io/badge/license-APACHE 2.0-blue.svg)
-  
-  
   ## Description
   What was your motivation for creating this project? I wanted a way to view a fantasy football draftboard and player highlights during a live draft
   Why did you build this project? I built this project to provide entertainment to people in a live draft by providing highlights, team summaries, and a draftboard to   view all in one location
@@ -67,8 +64,6 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
     
-  
-  
 
   ## Tests
   Here are the tests for this project:
