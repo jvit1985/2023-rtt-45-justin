@@ -2,24 +2,24 @@ package com.teksystems.controller;
 
 import com.teksystems.database.dao.PlayerDAO;
 import com.teksystems.database.entity.Player;
-import com.teksystems.database.entity.Team;
-import com.teksystems.database.entity.User;
-import com.teksystems.formbeans.TeamFormBean;
+import com.teksystems.formbeans.PlayerFormBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.teksystems.formbeans.PlayerFormBean;
 
 import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping( value = "/player")
+@RequestMapping(value = "/player")
 public class PlayerController {
 
     @Autowired
@@ -63,7 +63,8 @@ public class PlayerController {
 
         if (bindingResult.hasErrors()) {
             for (FieldError error : bindingResult.getFieldErrors()) {
-                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+                log.debug("Validation Error on field : " + error.getField() + " with message : "
+                        + error.getDefaultMessage());
             }
 
             response.addObject("form", form);
@@ -114,6 +115,13 @@ public class PlayerController {
         response.addObject("playerList", players);
         response.addObject("playerSearchParam", playerSearch);
 
+        players.stream().forEach( player -> {
+            log.info(player.toString());
+    });
+
+        players.stream().forEach(player -> {
+            log.info(player.getName().toString().toUpperCase());
+        });
 
         return response;
     }

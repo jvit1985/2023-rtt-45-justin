@@ -1,7 +1,7 @@
 const highlightBtn = document.querySelector("#highlight");
 let playerName = document.querySelector("#playerName");
 
-async function onPlayerReady (event) {
+async function onPlayerReady(event) {
     let result = await event.target.playVideo();
     return result;
 }
@@ -13,14 +13,14 @@ const getVideo = function () {
         type: 'GET',
         url: 'https://www.googleapis.com/youtube/v3/search',
         data: {
-            key: "",
+            key: "AIzaSyC5dZoaUi1EoYQIByQdRCV6S6iT7eBTaZE",
             q: draftedPlayer + 'highlights',
             part: 'snippet',
             maxResults: 1,
             type: 'video',
             videoEmbeddable: true,
         },
-        success: function(data) {
+        success: function (data) {
             // code to open in embedded iframe
             let video = $('iframe').attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId);
             // code to open in new window
@@ -31,7 +31,7 @@ const getVideo = function () {
                 }, 3000);
             });
         },
-        error: function(response){
+        error: function (response) {
             console.log('Response Failed');
         }
     });

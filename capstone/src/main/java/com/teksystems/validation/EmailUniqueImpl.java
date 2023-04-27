@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 @Slf4j
 public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String> {
 
@@ -40,7 +39,8 @@ public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String>
     }
 
     public boolean existsExample2(String value) {
-        // in this method we have used a spring data jpa function to see if the email exists
+        // in this method we have used a spring data jpa function to see if the email
+        // exists
         boolean exists = userDAO.existsByEmail(value);
         return !exists;
     }

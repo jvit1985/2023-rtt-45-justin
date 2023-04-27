@@ -13,15 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class ErrorController {
 
-
-//    @RequestMapping(value = "/error/404")
-//    public String error404(HttpServletRequest request) {
-//
-//        String originalUri = (String) request.getAttribute("javax.servlet.forward.request_uri");
-//        log.info("Requested URL not found : " + request.getMethod() + " " + originalUri);
-//
-//        return "error/404";
-//    }
+    // @RequestMapping(value = "/error/404")
+    // public String error404(HttpServletRequest request) {
+    //
+    // String originalUri = (String)
+    // request.getAttribute("javax.servlet.forward.request_uri");
+    // log.info("Requested URL not found : " + request.getMethod() + " " +
+    // originalUri);
+    //
+    // return "error/404";
+    // }
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleAllException(HttpServletRequest request, Exception ex) {
@@ -34,7 +35,8 @@ public class ErrorController {
 
         String stackTrace = getHTMLStackTrace(ExceptionUtils.getStackFrames(ex));
 
-        // message is the request URL if it was an error page, otherwise it can be a message
+        // message is the request URL if it was an error page, otherwise it can be a
+        // message
         // from the class that calls it
         model.addObject("requestUrl", requestUrl);
         model.addObject("message", ex.getMessage());

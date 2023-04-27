@@ -1,6 +1,7 @@
 package com.teksystems.security;
 
 import com.teksystems.database.dao.UserDAO;
+import com.teksystems.database.entity.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,7 +13,6 @@ import org.springframework.security.web.context.HttpSessionSecurityContextReposi
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import com.teksystems.database.entity.User;
 
 @Component
 public class AuthenticatedUserService {
@@ -23,7 +23,8 @@ public class AuthenticatedUserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    // this method will authenticate a user as if they had logged in through the login page.
+    // this method will authenticate a user as if they had logged in through the
+    // login page.
     public void changeLoggedInUsername(HttpSession session, String username, String unencryptedPassword) {
         // reset security principal to be the new user information
         Authentication request = new UsernamePasswordAuthenticationToken(username, unencryptedPassword);
@@ -32,7 +33,6 @@ public class AuthenticatedUserService {
         sc.setAuthentication(result);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
     }
-
 
     public User loadCurrentUser() {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
@@ -43,7 +43,8 @@ public class AuthenticatedUserService {
     public String getCurrentUsername() {
         SecurityContext context = SecurityContextHolder.getContext();
         if (context != null && context.getAuthentication() != null) {
-            final org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) context.getAuthentication().getPrincipal();
+            final org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) context
+                    .getAuthentication().getPrincipal();
             return principal.getUsername();
         } else {
             return null;

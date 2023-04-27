@@ -32,8 +32,7 @@ public class User {
     private String lastName;
 
     @ToString.Exclude
-//    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    // @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Team> teams;
 }

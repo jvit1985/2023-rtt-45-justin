@@ -1,37 +1,31 @@
 package com.teksystems.controller;
 
-import com.teksystems.database.dao.PlayerDAO;
 import com.teksystems.database.dao.TeamDAO;
 import com.teksystems.database.dao.TeamPlayerDAO;
 import com.teksystems.database.dao.UserDAO;
-import com.teksystems.database.entity.Player;
 import com.teksystems.database.entity.Team;
-import com.teksystems.database.entity.TeamPlayer;
 import com.teksystems.database.entity.User;
 import com.teksystems.formbeans.TeamFormBean;
 import com.teksystems.security.AuthenticatedUserService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @Controller
-@RequestMapping( value = "/team")
+@RequestMapping(value = "/team")
 public class TeamController {
 
     @Autowired
@@ -72,7 +66,6 @@ public class TeamController {
         form.setTeamName(team.getTeamName());
         form.setTeamPicture(team.getTeamPicture());
 
-
         response.addObject("form", form);
 
         return response;
@@ -88,18 +81,21 @@ public class TeamController {
     }
 
     @PostMapping("/createSubmit")
-    public ModelAndView createSubmit(@Valid TeamFormBean form, BindingResult bindingResult, @RequestParam(required = false) MultipartFile fileUpload) throws IOException {
+    public ModelAndView createSubmit(@Valid TeamFormBean form, BindingResult bindingResult,
+                                     @RequestParam(required = false) MultipartFile fileUpload) throws IOException {
         ModelAndView response = new ModelAndView("team/create");
         log.debug("In team createSubmit controller method");
         log.debug(form.toString());
 
-//        File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
-//        log.debug(target.getAbsolutePath());
-//        FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
+        // File target = new File("./src/main/webapp/pub/images/" +
+        // fileUpload.getOriginalFilename());
+        // log.debug(target.getAbsolutePath());
+        // FileUtils.copyInputStreamToFile(fileUpload.getInputStream(), target);
 
         if (bindingResult.hasErrors()) {
             for (FieldError error : bindingResult.getFieldErrors()) {
-                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+                log.debug("Validation Error on field : " + error.getField() + " with message : "
+                        + error.getDefaultMessage());
             }
 
             response.addObject("form", form);
@@ -115,7 +111,7 @@ public class TeamController {
             team = teamDAO.findById(form.getId());
         }
 
-        if(fileUpload.isEmpty()) {
+        if (fileUpload.isEmpty()) {
             team.setTeamPicture("../../../pub/images/default.png");
         } else {
             File target = new File("./src/main/webapp/pub/images/" + fileUpload.getOriginalFilename());
@@ -143,7 +139,6 @@ public class TeamController {
 
         response.addObject("teamList", teams);
         response.addObject("teamSearchParam", teamSearch);
-
 
         return response;
     }

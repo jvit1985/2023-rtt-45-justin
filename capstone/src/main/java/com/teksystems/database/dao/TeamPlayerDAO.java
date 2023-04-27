@@ -1,6 +1,5 @@
 package com.teksystems.database.dao;
 
-import com.teksystems.database.entity.Player;
 import com.teksystems.database.entity.TeamPlayer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +15,7 @@ public interface TeamPlayerDAO extends JpaRepository<TeamPlayer, Long> {
     TeamPlayer findByDraftPickNumber(Integer id);
 
     @Query(value = "select p.* from players p, team_players tp WHERE tp.player_id = p.id AND tp.team_id = :id ;", nativeQuery = true)
-    List<Map<String,Object>> findAllPlayersByTeamId(Integer id);
+    List<Map<String, Object>> findAllPlayersByTeamId(Integer id);
 
     TeamPlayer findByTeamId(Integer teamId);
 

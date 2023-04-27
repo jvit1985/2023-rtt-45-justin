@@ -2,32 +2,23 @@ package com.teksystems.controller;
 
 import com.teksystems.database.dao.*;
 import com.teksystems.database.entity.*;
-
-
 import com.teksystems.formbeans.CreateUserFormBean;
 import com.teksystems.formbeans.DraftPlayerFormBean;
-import com.teksystems.formbeans.TeamFormBean;
 import com.teksystems.security.AuthenticatedUserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
-
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -88,11 +79,11 @@ public class SlashController {
             bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Passwords do not match");
         }
 
-        if(bindingResult.hasErrors()) {
-            for (FieldError error: bindingResult.getFieldErrors()) {
-                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+        if (bindingResult.hasErrors()) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : "
+                        + error.getDefaultMessage());
             }
-
 
             response.addObject("bindingResult", bindingResult);
 
@@ -107,14 +98,15 @@ public class SlashController {
         String encryptedPassword = passwordEncoder.encode(form.getPassword());
         user.setPassword(encryptedPassword);
 
-        //will auto generate the ID and it will populate the field in the user entity
+        // will auto generate the ID and it will populate the field in the user entity
         userDAO.save(user);
         response.addObject("form", form);
         response.addObject("success", true);
 
         UserRole userRole = new UserRole();
         userRole.setRoleName("USER");
-        //so when we go to set the user id FK on the user role entity the user id has already populated.
+        // so when we go to set the user id FK on the user role entity the user id has
+        // already populated.
         userRole.setUserId(user.getId());
 
         userRoleDAO.save(userRole);
@@ -133,7 +125,7 @@ public class SlashController {
 
         List<Player> players = playerDAO.getAllUndraftedPlayers();
         List<Team> teams = teamDAO.getAllTeams();
-        List<Map<String,Object>> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
+        List<Map<String, Object>> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
         response.addObject("teams", teams);
         response.addObject("players", players);
         response.addObject("teamPlayers", teamPlayers);
@@ -147,14 +139,15 @@ public class SlashController {
 
         List<Team> teams = teamDAO.getAllTeams();
         List<Player> players = playerDAO.getAllUndraftedPlayers();
-        List<Map<String,Object>> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
+        List<Map<String, Object>> teamPlayers = teamPlayerDAO.getAllTeamPlayers();
         response.addObject("teams", teams);
         response.addObject("players", players);
         response.addObject("teamPlayers", teamPlayers);
 
-        if ( bindingResult.hasErrors()) {
-            for ( FieldError error : bindingResult.getFieldErrors()) {
-                log.debug("Validation Error on field : " + error.getField() + " with message : " + error.getDefaultMessage());
+        if (bindingResult.hasErrors()) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                log.debug("Validation Error on field : " + error.getField() + " with message : "
+                        + error.getDefaultMessage());
             }
 
             response.addObject("form", form);

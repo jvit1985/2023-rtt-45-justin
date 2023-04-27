@@ -33,7 +33,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("Username " + username + " not found in database");
         }
 
-        // these are used for advanced authentication features that we are not going to use
+        // these are used for advanced authentication features that we are not going to
+        // use
         boolean accountIsEnabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
@@ -55,6 +56,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         return authorities;
     }
-
 
 }

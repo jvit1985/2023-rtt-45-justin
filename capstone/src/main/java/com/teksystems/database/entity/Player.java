@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import java.util.List;
 
@@ -34,9 +32,8 @@ public class Player {
     private Integer bye;
 
     @ToString.Exclude
-//    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    // @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TeamPlayer> teamPlayers;
 
 }

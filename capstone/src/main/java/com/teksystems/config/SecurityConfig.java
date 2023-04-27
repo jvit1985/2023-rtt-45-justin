@@ -22,7 +22,9 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 // any urls you want to secure you put in request matchers separated by a comma
-                .authorizeHttpRequests().requestMatchers("/player/create", "/player/edit/*", "/draftboard", "/team/create", "/team/edit/*").authenticated()
+                .authorizeHttpRequests()
+                .requestMatchers("/player/create", "/player/edit/*", "/draftboard", "/team/create", "/team/edit/*")
+                .authenticated()
                 .anyRequest().permitAll().and().formLogin().loginPage("/login/login")
                 .loginProcessingUrl("/login/loginpost")
                 .defaultSuccessUrl("/")
@@ -34,7 +36,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
 
     @Bean(name = "passwordEncoder")
     public PasswordEncoder getPasswordEncoder() {

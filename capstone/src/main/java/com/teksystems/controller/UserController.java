@@ -2,24 +2,14 @@ package com.teksystems.controller;
 
 import com.teksystems.database.dao.TeamDAO;
 import com.teksystems.database.dao.UserDAO;
-import com.teksystems.database.entity.Team;
-import com.teksystems.database.entity.User;
-import com.teksystems.formbeans.TeamFormBean;
-import com.teksystems.formbeans.CreateUserFormBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping ( value = "/user")
+@RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
